@@ -16,6 +16,7 @@ using namespace std;
 static int debug = false;
 #endif
 
+//changes ... 
 int main(int argc, char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
     //corrected data are also printed to a file with same name & path of input file + out_ prepended
