@@ -16,26 +16,39 @@ using namespace std;
 static int debug = false;
 #endif
 
-int main(int argc, char** argv){
+//bias file
+string path_bias("../Lab_Data/20_03_24/");
+string name_bias("200324_aria_aria_1.txt");
+
+int main(int argc, const char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
     //corrected data are also printed to a file with same name & path of input file + out_ prepended
-    if(argc < 3 || argc >4){
-        cout<<"Program Usage : ./main <path> <filename> <debug>"<<endl;
-        exit(-1);
-    }
 
     //Initialising main
     TApplication myApp("myApp",0,0);
-    if(argc == 4){debug = atoi(argv[3]);}
+    string path;
+    string name;
+    string name_print;
+    int print = 0;
+
+    cout<<"======================================================="<<endl;
+    cout<<"Running Configuration"<<endl;
+    for(int i = 1; i<argc; i++){
+    
+        if(!strcmp(argv[i], "-path")){string path_appo(argv[++i]); path = path_appo; cout<<"path: "<<path<<endl;}
+        if(!strcmp(argv[i], "-name")){string name_appo(argv[++i]); name = name_appo + ".txt"; name_print = name_appo; cout<<"name: "<<name<<endl;}
+        if(!strcmp(argv[i], "-debug")){debug = atoi(argv[++i]);}
+        if(!strcmp(argv[i], "-print")){print = atoi(argv[++i]);}
+        
+    }
+    cout<<"debug:\t"<<debug<<endl;
+    cout<<"print:\t"<<print<<endl;
+    cout<<"path_bias:\t"<<path_bias<<endl;
+    cout<<"name_bias:\t"<<name_bias<<endl;
+    cout<<"======================================================="<<endl<<endl;
     if(debug){cout<<"Main Starts"<<endl;}
 
-    //bias file
-    string path_bias("../Lab_Data/20_03_24/");
-    string name_bias("200324_aria_aria_1.txt");
-
     //data file by command line
-    string path(argv[1]);
-    string name(argv[2]);
     ofstream out((path+"out_" + name));
     
     //bias data
@@ -50,7 +63,7 @@ int main(int argc, char** argv){
     }
     bias_graph.SetMarkerColor(4);
 
-    //data
+    //Data
     vector<Measure> Data;
     ReadAllData((path+name).c_str(), Data);
     TGraph Raw_graph;
@@ -61,7 +74,7 @@ int main(int argc, char** argv){
     }
     Raw_graph.SetMarkerColor(4);
 
-
+    //Correct_Data
     vector<Measure> Correct_Data;
     Correct(Data, &Correct_Data, Bias);
     Print(Correct_Data, &out);
@@ -73,7 +86,6 @@ int main(int argc, char** argv){
         Correct_graph.SetPoint(i, Correct_Data[i]._dati[0], Correct_Data[i]._dati[1]);
     }
     Correct_graph.SetMarkerColor(4);
-
 
     //fitting bias data
     /*
@@ -91,9 +103,24 @@ int main(int argc, char** argv){
     correct_can.cd();
     Correct_graph.Draw("A*");
 
-    TCanvas Raw_can;
-    Raw_can.cd();
+    TCanvas raw_can;
+    raw_can.cd();
     Raw_graph.Draw("A*");
+
+    if(print){
+    TCanvas* can = new TCanvas("canvas");
+    can->cd();
+    can->Print((path+"out_"+name_print+".pdf[").c_str(), "pdf");
+
+    bias_graph.Draw("A*");
+    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
+    Raw_graph.Draw("A*");
+    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
+    Correct_graph.Draw("A*");
+    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
+
+    can->Print((path+"out_"+name_print+".pdf]").c_str(), "pdf");
+    }
 
     //CLosing actions
     out.close();
