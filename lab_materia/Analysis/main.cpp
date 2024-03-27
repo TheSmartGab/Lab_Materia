@@ -41,8 +41,10 @@ int main(int argc, const char** argv){
         if(!strcmp(argv[i], "-print")){print = atoi(argv[++i]);}
         
     }
-    cout<<"debug: "<<debug<<endl;
-    cout<<"print: "<<print<<endl;
+    cout<<"debug:\t"<<debug<<endl;
+    cout<<"print:\t"<<print<<endl;
+    cout<<"path_bias:\t"<<path_bias<<endl;
+    cout<<"name_bias:\t"<<name_bias<<endl;
     cout<<"======================================================="<<endl<<endl;
     if(debug){cout<<"Main Starts"<<endl;}
 
@@ -61,7 +63,7 @@ int main(int argc, const char** argv){
     }
     bias_graph.SetMarkerColor(4);
 
-    //data
+    //Data
     vector<Measure> Data;
     ReadAllData((path+name).c_str(), Data);
     TGraph Raw_graph;
@@ -72,7 +74,7 @@ int main(int argc, const char** argv){
     }
     Raw_graph.SetMarkerColor(4);
 
-
+    //Correct_Data
     vector<Measure> Correct_Data;
     Correct(Data, &Correct_Data, Bias);
     Print(Correct_Data, &out);
@@ -85,7 +87,6 @@ int main(int argc, const char** argv){
     }
     Correct_graph.SetMarkerColor(4);
 
-
     //fitting bias data
     /*
     TF1 func("func", "[0]*exp(-[1]/x)", 200., 900.);
@@ -93,7 +94,6 @@ int main(int argc, const char** argv){
     func.SetParLimits(1, 1000, 50000);
     bias_graph.Fit("func", "+");
     */
-
 
     TCanvas bias_can;
     bias_can.cd();
