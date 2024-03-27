@@ -16,7 +16,6 @@ using namespace std;
 static int debug = false;
 #endif
 
-//changes ... 
 int main(int argc, char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
     //corrected data are also printed to a file with same name & path of input file + out_ prepended
@@ -54,12 +53,21 @@ int main(int argc, char** argv){
     //data
     vector<Measure> Data;
     ReadAllData((path+name).c_str(), Data);
+    TGraph Raw_graph;
+    Raw_graph.SetTitle("Raw Data Measurements");
+    Raw_graph.GetXaxis()->SetTitle("lambda");
+    for(int i = 0; i<Data.size();i++){
+        Raw_graph.SetPoint(i,Data[i]._dati[0], Data[i]._dati[1]);
+    }
+    Raw_graph.SetMarkerColor(4);
+
+
     vector<Measure> Correct_Data;
     Correct(Data, &Correct_Data, Bias);
     Print(Correct_Data, &out);
 
     TGraph Correct_graph;
-    Correct_graph.SetTitle("Data Measurements");
+    Correct_graph.SetTitle("Correct Data Measurements");
     Correct_graph.GetXaxis()->SetTitle("lambda");
     for(int i = 0; i<Correct_Data.size();i++){
         Correct_graph.SetPoint(i, Correct_Data[i]._dati[0], Correct_Data[i]._dati[1]);
@@ -82,6 +90,10 @@ int main(int argc, char** argv){
     TCanvas correct_can;
     correct_can.cd();
     Correct_graph.Draw("A*");
+
+    TCanvas Raw_can;
+    Raw_can.cd();
+    Raw_graph.Draw("A*");
 
     //CLosing actions
     out.close();
