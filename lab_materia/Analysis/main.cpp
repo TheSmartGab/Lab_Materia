@@ -28,19 +28,22 @@ int main(int argc, const char** argv){
     TApplication myApp("myApp",0,0);
     string path;
     string name;
+    string name_print;
     int print = 0;
 
+    cout<<"======================================================="<<endl;
+    cout<<"Running Configuration"<<endl;
     for(int i = 1; i<argc; i++){
-        cout<<argv[i]<<endl;
     
         if(!strcmp(argv[i], "-path")){string path_appo(argv[++i]); path = path_appo; cout<<"path: "<<path<<endl;}
-        if(!strcmp(argv[i], "-name")){string name_appo(argv[++i]); name = name_appo; cout<<"name: "<<name<<endl;}
+        if(!strcmp(argv[i], "-name")){string name_appo(argv[++i]); name = name_appo + ".txt"; name_print = name_appo; cout<<"name: "<<name<<endl;}
         if(!strcmp(argv[i], "-debug")){debug = atoi(argv[++i]);}
         if(!strcmp(argv[i], "-print")){print = atoi(argv[++i]);}
         
     }
     cout<<"debug: "<<debug<<endl;
     cout<<"print: "<<print<<endl;
+    cout<<"======================================================="<<endl<<endl;
     if(debug){cout<<"Main Starts"<<endl;}
 
     //data file by command line
@@ -91,18 +94,33 @@ int main(int argc, const char** argv){
     bias_graph.Fit("func", "+");
     */
 
+
     TCanvas bias_can;
     bias_can.cd();
     bias_graph.Draw("A*");
-    if(print){cout<<"Printing ... "<<endl; bias_can.Print(("(" + path + name +".pdf").c_str() , "pdf");}
 
     TCanvas correct_can;
     correct_can.cd();
     Correct_graph.Draw("A*");
 
-    TCanvas Raw_can;
-    Raw_can.cd();
+    TCanvas raw_can;
+    raw_can.cd();
     Raw_graph.Draw("A*");
+
+    if(print){
+    TCanvas* can = new TCanvas("canvas");
+    can->cd();
+    can->Print((path+"out_"+name_print+".pdf[").c_str(), "pdf");
+
+    bias_graph.Draw("A*");
+    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
+    Raw_graph.Draw("A*");
+    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
+    Correct_graph.Draw("A*");
+    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
+
+    can->Print((path+"out_"+name_print+".pdf]").c_str(), "pdf");
+    }
 
     //CLosing actions
     out.close();
