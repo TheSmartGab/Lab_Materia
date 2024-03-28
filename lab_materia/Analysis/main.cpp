@@ -19,6 +19,8 @@ static int debug = false;
 //bias file
 string path_bias("../Lab_Data/20_03_24/");
 string name_bias("200324_aria_aria_1.txt");
+int MS = 1;
+int MC = 4;
 
 int main(int argc, const char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
@@ -30,6 +32,8 @@ int main(int argc, const char** argv){
     string name;
     string name_print;
     int print = 0;
+
+    //Pallick
 
     cout<<"======================================================="<<endl;
     cout<<"Running Configuration"<<endl;
@@ -58,10 +62,13 @@ int main(int argc, const char** argv){
     TGraph bias_graph;
     bias_graph.SetTitle("Calibration Measurements");
     bias_graph.GetXaxis()->SetTitle("lambda");
+    bias_graph.GetYaxis()->SetTitle("Trasmittance");
     for(int i = 0; i<Bias.size();i++){
         bias_graph.SetPoint(i, Bias[i]._dati[0], Bias[i]._dati[1]);
     }
-    bias_graph.SetMarkerColor(4);
+    bias_graph.SetMarkerColor(MC);
+    bias_graph.SetMarkerStyle(MS);
+
 
     //Data
     vector<Measure> Data;
@@ -69,10 +76,12 @@ int main(int argc, const char** argv){
     TGraph Raw_graph;
     Raw_graph.SetTitle("Raw Data Measurements");
     Raw_graph.GetXaxis()->SetTitle("lambda");
+    Raw_graph.GetYaxis()->SetTitle("Trasmittance");
     for(int i = 0; i<Data.size();i++){
         Raw_graph.SetPoint(i,Data[i]._dati[0], Data[i]._dati[1]);
     }
-    Raw_graph.SetMarkerColor(4);
+    Raw_graph.SetMarkerColor(MC);
+    Raw_graph.SetMarkerStyle(MS);
 
     //Correct_Data
     vector<Measure> Correct_Data;
@@ -82,10 +91,12 @@ int main(int argc, const char** argv){
     TGraph Correct_graph;
     Correct_graph.SetTitle("Correct Data Measurements");
     Correct_graph.GetXaxis()->SetTitle("lambda");
+    Correct_graph.GetYaxis()->SetTitle("Trasmittance");
     for(int i = 0; i<Correct_Data.size();i++){
         Correct_graph.SetPoint(i, Correct_Data[i]._dati[0], Correct_Data[i]._dati[1]);
     }
-    Correct_graph.SetMarkerColor(4);
+    Correct_graph.SetMarkerColor(MC);
+    Correct_graph.SetMarkerStyle(MS);
 
     //fitting bias data
     /*
@@ -97,26 +108,26 @@ int main(int argc, const char** argv){
 
     TCanvas bias_can;
     bias_can.cd();
-    bias_graph.Draw("A*");
+    bias_graph.Draw("AP");
 
     TCanvas correct_can;
     correct_can.cd();
-    Correct_graph.Draw("A*");
+    Correct_graph.Draw("AP");
 
     TCanvas raw_can;
     raw_can.cd();
-    Raw_graph.Draw("A*");
+    Raw_graph.Draw("AP");
 
     if(print){
     TCanvas* can = new TCanvas("canvas");
     can->cd();
     can->Print((path+"out_"+name_print+".pdf[").c_str(), "pdf");
 
-    bias_graph.Draw("A*");
+    bias_graph.Draw("AP");
     can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
-    Raw_graph.Draw("A*");
+    Raw_graph.Draw("AP");
     can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
-    Correct_graph.Draw("A*");
+    Correct_graph.Draw("AP");
     can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
 
     can->Print((path+"out_"+name_print+".pdf]").c_str(), "pdf");

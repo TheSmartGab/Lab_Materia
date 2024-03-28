@@ -60,6 +60,52 @@ void ReadAllData(const char* filename, vector<Measure> &dati){
     if(debug){cout<<"ReadALlData Ends, filename = "<<filename<<endl;}
 };
 
+void ReadTabData(const char* filename, vector<Measure> &dati_n, vector<Measure> &dati_k){
+
+    if(debug){cout<<"ReadTabData Starts, filename = "<<filename<<endl;}
+
+    ifstream in(filename);
+    if(!in){cout<<"\nImpossibile aprire il file \""<<filename<<"\""<<endl; exit(-1); }
+
+    bool start_n = false;
+    bool start_k = false;
+    do{
+        string arr;
+        getline(in, arr);
+        stringstream ss(arr);
+        Measure appo;
+        string value = "";
+
+        while(ss >> value){
+            if(value == "n"){start_n = true; start_k = false;}
+            if(value == "k"){start_k = true; start_n = false;}
+            appo._dati.push_back(atof(value.c_str()));
+        }
+        
+        if(appo._dati.size() == 2 && start_n == true){dati_n.push_back(appo);}
+        if(appo._dati.size() == 2 && start_k == true){dati_k.push_back(appo);}
+    }while(!in.eof());
+
+    if(debug){
+        cout<<"TabData Uploaded:"<<endl;
+        cout<<"Dati_n:"<<endl;
+        for(int i = 0; i<dati_n.size(); i++){
+            cout<<dati_n[i]._dati[0]<<"\t"<<dati_n[i]._dati[1]<<endl;
+            cout<<dati_n[i]._dati[0]<<"\t"<<dati_n[i]._dati[1]<<endl;
+        }
+        cout<<"Dati_k"<<endl;
+        for(int i = 0; i<dati_k.size();i++){
+            cout<<dati_k[i]._dati[0]<<"\t"<<dati_k[i]._dati[1]<<endl;
+            cout<<dati_k[i]._dati[0]<<"\t"<<dati_k[i]._dati[1]<<endl;
+        }
+    }
+    
+    in.seekg(0);
+    in.close();
+
+    if(debug){cout<<"ReadALlData Ends, filename = "<<filename<<endl;}
+};
+
 void Print(vector<Measure> Data, ofstream *out){
     if(debug){cout<<"Print Begins"<<endl;}
 
