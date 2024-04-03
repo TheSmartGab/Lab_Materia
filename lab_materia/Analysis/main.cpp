@@ -11,16 +11,17 @@
 
 using namespace std;
 
-#ifndef __Debug__
-#define __Debug__
-static int debug = false;
+//bias file
+static string path_bias("../Lab_Data/20_03_24/");
+static string name_bias("200324_aria_aria_1.txt");
+
+#ifndef __Files__
+#define __Files__
+string path;
+string name;
+string name_print;
 #endif
 
-//bias file
-string path_bias("../Lab_Data/20_03_24/");
-string name_bias("200324_aria_aria_1.txt");
-int MS = 1;
-int MC = 4;
 
 int main(int argc, const char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
@@ -28,10 +29,6 @@ int main(int argc, const char** argv){
 
     //Initialising main
     TApplication myApp("myApp",0,0);
-    string path;
-    string name;
-    string name_print;
-    int print = 0;
 
     //Pallick
 
@@ -53,50 +50,33 @@ int main(int argc, const char** argv){
     if(debug){cout<<"Main Starts"<<endl;}
 
     //data file by command line
-    ofstream out((path+"out_" + name));
+    ofstream out((path+"out_" + name).c_str());
+    if(print){
+        TCanvas can;
+        can.Print((path + "out_" + name_print + ".pdf[").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
+    }
     
     //bias data
     vector<Measure> Bias;
     ReadAllData((path_bias+name_bias).c_str(), Bias);
-
-    TGraph bias_graph;
-    bias_graph.SetTitle("Calibration Measurements");
-    bias_graph.GetXaxis()->SetTitle("lambda");
-    bias_graph.GetYaxis()->SetTitle("Trasmittance");
-    for(int i = 0; i<Bias.size();i++){
-        bias_graph.SetPoint(i, Bias[i]._dati[0], Bias[i]._dati[1]);
-    }
-    bias_graph.SetMarkerColor(MC);
-    bias_graph.SetMarkerStyle(MS);
-
-
+    TGraph Bias_graph;
+    TCanvas Bias_can;
+    Draw_on_Canvas(Bias, Bias_graph, Bias_can, "Bias", "lambda", "Trasmittance");
+    
     //Data
     vector<Measure> Data;
     ReadAllData((path+name).c_str(), Data);
     TGraph Raw_graph;
-    Raw_graph.SetTitle("Raw Data Measurements");
-    Raw_graph.GetXaxis()->SetTitle("lambda");
-    Raw_graph.GetYaxis()->SetTitle("Trasmittance");
-    for(int i = 0; i<Data.size();i++){
-        Raw_graph.SetPoint(i,Data[i]._dati[0], Data[i]._dati[1]);
-    }
-    Raw_graph.SetMarkerColor(MC);
-    Raw_graph.SetMarkerStyle(MS);
+    TCanvas Raw_can;
+    Draw_on_Canvas(Data, Raw_graph, Raw_can, "Raw_Data", "lambda", "Trasmittance");
 
     //Correct_Data
     vector<Measure> Correct_Data;
     Correct(Data, &Correct_Data, Bias);
     Print(Correct_Data, &out);
-
     TGraph Correct_graph;
-    Correct_graph.SetTitle("Correct Data Measurements");
-    Correct_graph.GetXaxis()->SetTitle("lambda");
-    Correct_graph.GetYaxis()->SetTitle("Trasmittance");
-    for(int i = 0; i<Correct_Data.size();i++){
-        Correct_graph.SetPoint(i, Correct_Data[i]._dati[0], Correct_Data[i]._dati[1]);
-    }
-    Correct_graph.SetMarkerColor(MC);
-    Correct_graph.SetMarkerStyle(MS);
+    TCanvas Correct_can;
+    Draw_on_Canvas(Correct_Data, Correct_graph, Correct_can, "Corrected_Data", "lambda", "Trasmittance");
 
     //fitting bias data
     /*
@@ -106,36 +86,12 @@ int main(int argc, const char** argv){
     bias_graph.Fit("func", "+");
     */
 
-    TCanvas bias_can;
-    bias_can.cd();
-    bias_graph.Draw("AP");
-
-    TCanvas correct_can;
-    correct_can.cd();
-    Correct_graph.Draw("AP");
-
-    TCanvas raw_can;
-    raw_can.cd();
-    Raw_graph.Draw("AP");
-
-    if(print){
-    TCanvas* can = new TCanvas("canvas");
-    can->cd();
-    can->Print((path+"out_"+name_print+".pdf[").c_str(), "pdf");
-
-    bias_graph.Draw("AP");
-    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
-    Raw_graph.Draw("AP");
-    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
-    Correct_graph.Draw("AP");
-    can->Print((path+"out_"+name_print+".pdf").c_str(), "pdf");
-
-    can->Print((path+"out_"+name_print+".pdf]").c_str(), "pdf");
-    }
-
     //CLosing actions
     out.close();
-
+    if(print){
+        TCanvas can;
+        can.Print((path + "out_" + name_print + ".pdf]").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
+    }
     cout<<"Running App"<<endl;
     myApp.Run();
     if(debug){cout<<"Main Ends"<<endl;}

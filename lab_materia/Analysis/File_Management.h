@@ -9,9 +9,26 @@
 #include <vector>
 #include "Measures.h"
 
+#include "TGraph.h"
+#include "TCanvas.h"
+#include "TAxis.h"
+#include "TH1D.h"
+
 #ifndef __Debug__
 #define __Debug__
-static int debug = false;
+static int debug = 0;
+#endif
+
+#ifndef __Print__
+#define __Print__
+static int print = 0;
+#endif
+
+#ifndef __Files__
+#define __Files__
+static string path;
+static string name;
+static string name_print;
 #endif
 
 using namespace std;
@@ -115,6 +132,30 @@ void Print(vector<Measure> Data, ofstream *out){
     }
 
     if(debug){cout<<"Print Ends"<<endl;}
-}
+};
+
+static int MS = 1;
+static int MC = 4;
+void Draw_on_Canvas(vector<Measure> &Data, TGraph& graph, TCanvas& can, string Title, string X_label, string Y_label){
+    //print = 1;
+    cout<<print<<endl;
+    for(int i = 0; i<Data.size(); i++){
+        graph.SetPoint(i, Data[i]._dati[0], Data[i]._dati[1]);
+    }
+    graph.SetMarkerColor(MC);
+    graph.SetMarkerStyle(MS);
+    graph.SetTitle(Title.c_str());
+    graph.GetXaxis()->SetTitle(X_label.c_str());
+    graph.GetYaxis()->SetTitle(Y_label.c_str());
+
+    can.cd();
+    graph.Draw("AP");
+    cout<<print<<endl;
+    if(print){
+        can.Print((path + "out_" + name_print + ".pdf").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
+    }
+};
+
+
 
 #endif
