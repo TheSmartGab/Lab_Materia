@@ -94,8 +94,9 @@ void ReadTabData(const char* filename, vector<Measure> &dati_n, vector<Measure> 
         string value = "";
 
         while(ss >> value){
-            if(value == "n"){start_n = true; start_k = false;}
-            if(value == "k"){start_k = true; start_n = false;}
+            if(value == "n"){start_n = true; start_k = false; ss>>value;}
+            if(value == "k"){start_k = true; start_n = false; ss>>value;}
+            if(value == "wl"){ss>>value;}
             appo._dati.push_back(atof(value.c_str()));
         }
         
@@ -136,12 +137,16 @@ void Print(vector<Measure> Data, ofstream *out){
 
 static int MS = 1;
 static int MC = 4;
+double l_min = -5;
+double l_max = 5;
 void Draw_on_Canvas(vector<Measure> &Data, TGraph& graph, TCanvas& can, string Title, string X_label, string Y_label){
     //print = 1;
     cout<<print<<endl;
     for(int i = 0; i<Data.size(); i++){
         graph.SetPoint(i, Data[i]._dati[0], Data[i]._dati[1]);
     }
+    graph.SetMaximum(l_max);
+    graph.SetMinimum(l_min);
     graph.SetMarkerColor(MC);
     graph.SetMarkerStyle(MS);
     graph.SetTitle(Title.c_str());

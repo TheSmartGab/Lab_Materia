@@ -15,6 +15,7 @@ using namespace std;
 static string path_bias("../Lab_Data/20_03_24/");
 static string name_bias("200324_aria_aria_1.txt");
 
+
 #ifndef __Files__
 #define __Files__
 string path;
