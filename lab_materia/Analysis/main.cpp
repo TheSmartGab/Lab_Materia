@@ -15,14 +15,12 @@ using namespace std;
 static string path_bias("../Lab_Data/20_03_24/");
 static string name_bias("200324_aria_aria_1.txt");
 
+int debug = 0;
+int print = 0;
 
-#ifndef __Files__
-#define __Files__
 string path;
 string name;
 string name_print;
-#endif
-
 
 int main(int argc, const char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
@@ -58,23 +56,25 @@ int main(int argc, const char** argv){
     }
     
     //bias data
-    vector<Measure> Bias;
-    ReadAllData((path_bias+name_bias).c_str(), Bias);
+    Measurements Bias;
+    Bias.ReadAllData((path_bias+name_bias).c_str());
     TGraph Bias_graph;
     TCanvas Bias_can;
     Draw_on_Canvas(Bias, Bias_graph, Bias_can, "Bias", "lambda", "Trasmittance");
     
     //Data
-    vector<Measure> Data;
-    ReadAllData((path+name).c_str(), Data);
+    Measurements Data;
+    Data.ReadAllData((path+name).c_str());
+    Data.Print(&out);
+    Bias.SetBias(Data);
     TGraph Raw_graph;
     TCanvas Raw_can;
     Draw_on_Canvas(Data, Raw_graph, Raw_can, "Raw_Data", "lambda", "Trasmittance");
 
     //Correct_Data
-    vector<Measure> Correct_Data;
-    Correct(Data, &Correct_Data, Bias);
-    Print(Correct_Data, &out);
+    Measurements Correct_Data;
+    Correct_Data.Correct(Data, Bias);
+    Correct_Data.Print(&out);
     TGraph Correct_graph;
     TCanvas Correct_can;
     Draw_on_Canvas(Correct_Data, Correct_graph, Correct_can, "Corrected_Data", "lambda", "Trasmittance");
@@ -93,6 +93,7 @@ int main(int argc, const char** argv){
         TCanvas can;
         can.Print((path + "out_" + name_print + ".pdf]").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
     }
+
     cout<<"Running App"<<endl;
     myApp.Run();
     if(debug){cout<<"Main Ends"<<endl;}

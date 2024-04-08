@@ -9,3 +9,5 @@ This repository should contain all the code and analysis files for the lab
 # path is the path to the file. <print> and <debug> are Optional flags. debug = 0|1 print = 0|1. debug simply
 # make the program print debug statements, usefull when something brakes. print, when enabled, prints all
 # the graphs to pdf
+
+# Differences should be updated after 8/04 changes if you want to use it, but should not be necessary
