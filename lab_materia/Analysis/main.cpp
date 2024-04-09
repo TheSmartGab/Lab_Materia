@@ -1,4 +1,3 @@
-#include "File_Management.h"
 #include "Measures.h"
 #include <iostream>
 #include <vector>
@@ -17,6 +16,7 @@ static string name_bias("200324_aria_aria_1.txt");
 
 int debug = 0;
 int print = 0;
+int fit = 0;
 
 string path;
 string name;
@@ -58,26 +58,25 @@ int main(int argc, const char** argv){
     //bias data
     Measurements Bias;
     Bias.ReadAllData((path_bias+name_bias).c_str());
-    TGraph Bias_graph;
-    TCanvas Bias_can;
-    Draw_on_Canvas(Bias, Bias_graph, Bias_can, "Bias", "lambda", "Trasmittance");
+
     
     //Data
     Measurements Data;
     Data.ReadAllData((path+name).c_str());
     Data.Print(&out);
+    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, "Data");
+    Data.Draw("AP");
+
     Bias.SetBias(Data);
-    TGraph Raw_graph;
-    TCanvas Raw_can;
-    Draw_on_Canvas(Data, Raw_graph, Raw_can, "Raw_Data", "lambda", "Trasmittance");
+    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, "Bias" );
+    Bias.Draw("AP");
 
     //Correct_Data
     Measurements Correct_Data;
     Correct_Data.Correct(Data, Bias);
     Correct_Data.Print(&out);
-    TGraph Correct_graph;
-    TCanvas Correct_can;
-    Draw_on_Canvas(Correct_Data, Correct_graph, Correct_can, "Corrected_Data", "lambda", "Trasmittance");
+    Correct_Data.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, "Corrected Data");
+    Correct_Data.Draw("AP");
 
     //fitting bias data
     /*
