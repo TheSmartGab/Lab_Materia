@@ -11,3 +11,6 @@ This repository should contain all the code and analysis files for the lab
 # the graphs to pdf
 
 # Differences should be updated after 8/04 changes if you want to use it, but should not be necessary
+
+
+./DrawTabs -name1 Johnson -name2 Lemarchand -name3 Cielsky -name4 Rosenblat -name5 Yakubonsky -name6 Palik -fit 1

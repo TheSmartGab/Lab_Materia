@@ -1,7 +1,0 @@
-Tipo : Trasmission
-Sample: Aria
-Control : Aria
-
-
-Description:
-Data taken to calibrate Future signals. They show the presence of a bias that is somewhat exponential-like regardless of the calibration point
