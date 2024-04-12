@@ -18,9 +18,12 @@ int debug = 0;
 int print = 0;
 int fit = 0;
 
+int noApp = 0;
+
 string path;
-string name;
 string name_print;
+
+string name;
 
 int main(int argc, const char** argv){
     //Read the file given, corrects it for the bias by default and plot bias and corrected data
@@ -39,12 +42,14 @@ int main(int argc, const char** argv){
         if(!strcmp(argv[i], "-name")){string name_appo(argv[++i]); name = name_appo + ".txt"; name_print = name_appo; cout<<"name: "<<name<<endl;}
         if(!strcmp(argv[i], "-debug")){debug = atoi(argv[++i]);}
         if(!strcmp(argv[i], "-print")){print = atoi(argv[++i]);}
+        if(!strcmp(argv[i], "-noApp")){noApp = atoi(argv[++i]);}
         
     }
     cout<<"debug:\t"<<debug<<endl;
     cout<<"print:\t"<<print<<endl;
     cout<<"path_bias:\t"<<path_bias<<endl;
     cout<<"name_bias:\t"<<name_bias<<endl;
+    cout<<"noApp:\t"<<noApp<<endl;
     cout<<"======================================================="<<endl<<endl;
     if(debug){cout<<"Main Starts"<<endl;}
 
@@ -64,27 +69,19 @@ int main(int argc, const char** argv){
     Measurements Data;
     Data.ReadAllData((path+name).c_str());
     Data.Print(&out);
-    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, "Data");
+    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, "Data", -1, 3.5);
     Data.Draw("AP");
 
     Bias.SetBias(Data);
-    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, "Bias" );
+    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, "Bias", -1, 3.5 );
     Bias.Draw("AP");
 
     //Correct_Data
     Measurements Correct_Data;
     Correct_Data.Correct(Data, Bias);
     Correct_Data.Print(&out);
-    Correct_Data.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, "Corrected Data");
+    Correct_Data.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, "Corrected Data", -1, 3.5);
     Correct_Data.Draw("AP");
-
-    //fitting bias data
-    /*
-    TF1 func("func", "[0]*exp(-[1]/x)", 200., 900.);
-    func.SetParameters(-2E20, -10000, 50000);
-    func.SetParLimits(1, 1000, 50000);
-    bias_graph.Fit("func", "+");
-    */
 
     //CLosing actions
     out.close();
@@ -93,8 +90,10 @@ int main(int argc, const char** argv){
         can.Print((path + "out_" + name_print + ".pdf]").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
     }
 
-    cout<<"Running App"<<endl;
-    myApp.Run();
+    if(!noApp){
+        cout<<"Running App"<<endl;
+        myApp.Run();
+    }
     if(debug){cout<<"Main Ends"<<endl;}
     return 0;
 }

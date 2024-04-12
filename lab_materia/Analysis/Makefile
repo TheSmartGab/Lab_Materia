@@ -1,7 +1,7 @@
 LIBS:= `root-config --libs`
 INCS:= `root-config --cflags`
 
-all: DrawTabs main
+all: DrawTabs main AbsToTrans
 
 main: main.o Measures.o
 	g++ -o main main.o Measures.o ${LIBS}
@@ -18,16 +18,17 @@ DrawTabs.o: DrawTabs.cpp Measures.h
 Measures.o: Measures.cpp Measures.h
 	g++ -c Measures.cpp  ${INCS} 
 
+AbsToTrans: AbsToTrans.o Measures.o
+	g++ -o AbsToTrans AbsToTrans.o  Measures.o ${LIBS}
 
-#Differences: Differences.o
-#	g++ -o Differences Differences.o ${LIBS}
+AbsToTrans.o: AbsToTrans.cpp Measures.h
+	g++ -c AbsToTrans.cpp ${INCS}
 
-#Differences.o: Differences.cpp Measures.h File_Management.h
-#	g++ -c Differences.cpp ${INCS}
 
 
 
 clear:
 	rm *.o
 	rm main
-	rm Differences
+	rm AbsToTrans
+	rm DrawTabs
