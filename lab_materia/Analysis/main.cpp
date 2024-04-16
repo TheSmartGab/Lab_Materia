@@ -69,18 +69,18 @@ int main(int argc, const char** argv){
     Measurements Data;
     Data.ReadAllData((path+name).c_str());
     Data.Print(&out);
-    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, "Data", -1, 3.5);
+    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, "Data", -1, 3.5, 320, 1000);
     Data.Draw("AP");
 
     Bias.SetBias(Data);
-    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, "Bias", -1, 3.5 );
+    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, "Bias", -1, 3.5, 320, 1000 );
     Bias.Draw("AP");
 
     //Correct_Data
     Measurements Correct_Data;
     Correct_Data.Correct(Data, Bias);
     Correct_Data.Print(&out);
-    Correct_Data.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, "Corrected Data", -1, 3.5);
+    Correct_Data.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, "Corrected Data", 0, 0.5, 320, 1000);
     Correct_Data.Draw("AP");
 
     //CLosing actions
