@@ -1,12 +1,12 @@
 #ifndef __Measures_h__
 #define __Measures_h__
 
-
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <cmath>
 #include <math.h>
+#include <filesystem>
 
 #include "TString.h"
 #include "TF1.h"
@@ -61,6 +61,8 @@ class Measurements{
     double GetTemp() const {return _Temp;};
     double GetTheta() const {return _Theta;};
     double GetRate() const {return _Rate;};
+    string GetID() const {return ID;};
+    string GetType() const {return Type;};
 
     void push_back(const Measure& meas){
         _Data.push_back(meas);
@@ -72,7 +74,7 @@ class Measurements{
     void Read_Data(stringstream &ss);
     void ReadAllData(const char* filename);
 
-    double Bias_Interpolator(const double &lambda) const ;
+    double Linear_Interpolator(const double &lambda) const ;
     void SetBias(const Measurements &Meas);  
 
     void Correct(const Measurements &input, const Measurements &bias);
@@ -93,7 +95,6 @@ class Measurements{
 
     void DrawCanvas(TCanvas &can, const char* opt);
 
-
     private:
     vector<Measure> _Data;
     Measure _Calibration;
@@ -101,11 +102,103 @@ class Measurements{
     double _Theta;
     double _Thick;
     double _Rate;
+    string ID;
+    string Type;
 
     TF1 *func;
     TGraph *graph;
     TCanvas *can;
     TLegend *legend;
+};
+
+class Glass_Info{
+
+    public:
+    string GetType() const {return Type;};
+    string GetID() const {return ID;};
+    double GetPos() const {return Pos;};
+
+    void SetType(const string &type){Type = type;};
+    void SetID(const string &id){ID = id;};
+    void SetPos(const double &pos){Pos = pos;};
+
+    void Read(stringstream &ss);
+
+    private:
+    string Type, ID;
+    double Pos;
+};
+
+class Run_Info{
+
+    public:
+
+    void RI_FromFile(const char* FileName);
+
+    private:
+    vector<Glass_Info> Additional;
+
+};
+
+class Disk_Geo{
+
+    public: 
+    vector<Glass_Info> GetCenter() const {return Center;};
+    vector<Glass_Info> GetInner() const {return Inner;};
+    vector<Glass_Info> GetOuter() const {return Outer;};
+
+    void DG_FromFile(const char* FileName);
+
+    private:
+    vector<Glass_Info> Center;
+    vector<Glass_Info> Inner;
+    vector<Glass_Info> Outer;
+
+};
+
+#ifndef __Bias_File__
+#define __Bias_File__
+static string BIAS_FILE = "../Lab_Data/20_03_24/200324_aria_aria_1.txt";
+#endif
+
+class Run: public Disk_Geo, Run_Info{
+
+    public:
+
+    vector<Measurements> GetRunData(){return _RunData;};
+    void LoadRunData();
+
+    void ChargeDataNames();
+    void CorrectAll();
+
+    void Init(string run_num);
+
+    void SetAll();
+    void DrawAll();
+
+    void DrawAllSame(const char* opt, const double& min, const double& max, const double& xmin = 300, const double& xmax = 900);
+    void DrawInner(const char* opt, const double& min, const double& max, const double& xmin = 300, const double& xmax = 900);
+    void DrawOuter(const char* opt, const double& min, const double& max, const double& xmin = 300, const double& xmax = 900);
+    void DrawAdditional(const char* opt, const double& min, const double& max, const double& xmin = 300, const double& xmax = 900);
+
+    private:
+    vector<Measurements> _RunData; //Raw Data from file
+    vector<Measurements> _CorrectData; //data corrected from bias
+    string Run_Num;
+    vector<string> v_data_names;
+    string Bias_File;
+    Measurements Bias;
+
+    string Print_Path;
+    string Print_Name_Raw;
+    string Print_Name_Correct;
+
+    TCanvas* AllCan;
+    TCanvas* InnCan;
+    TCanvas* OutCan;
+    TCanvas* AddCan;
+
+    int color;
 };
 
 class TabValues{

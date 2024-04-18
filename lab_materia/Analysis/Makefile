@@ -1,7 +1,7 @@
 LIBS:= `root-config --libs`
 INCS:= `root-config --cflags`
 
-all: DrawTabs main AbsToTrans
+all: DrawTabs main AbsToTrans Run
 
 main: main.o Measures.o
 	g++ -o main main.o Measures.o ${LIBS}
@@ -24,7 +24,11 @@ AbsToTrans: AbsToTrans.o Measures.o
 AbsToTrans.o: AbsToTrans.cpp Measures.h
 	g++ -c AbsToTrans.cpp ${INCS}
 
+Run: Run.o Measures.o
+	g++ -o Run Run.o Measures.o ${LIBS}
 
+Run.o: Run.cpp Measures.h
+	g++ -c Run.cpp ${INCS}
 
 
 clear:
