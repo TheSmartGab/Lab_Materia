@@ -1,0 +1,9 @@
+03_04_24_oro_vetro_12_T_800_0_000_Run_1.txt
+03_04_24_vetro_aria_T_800_0_0002_Run_1.txt
+03_04_24_vetro_oro_0_T_800_-0_0009_Run_1.txt
+03_04_24_vetro_oro_10_T_800_0_0005_Run_1.txt
+03_04_24_vetro_oro_11_T_800_-0_0006_Run_1.txt
+03_04_24_vetro_oro_15_T_800_-0_0003_Run_1.txt
+27_03_24_oro_aria_15_T_800_Run_1.txt
+27_03_24_oro_aria_15_T_Run_1.txt
+27_03_24_oro_vetro_15_T_Run_1.txt

@@ -1,0 +1,24 @@
+Crogiolo
+Type            Misura[mg]          Low[mg]         High[mg]
+Initial         1820.35             1820.3          1820.4
+Gold            2426.7              2426.6          2426.8
+Final           2382.35             2382.3          2382.4
+
+Geometry
+Height[m]: 0.107
+
+Balance_ID: 6
+Balance_Thick[nm]: 25.4
+Tot_time[s]: 1800s
+
+Additional glasses
+Type: Additional
+ID          R[m]
+A          0.0818
+B          0.0834
+C          0.0870
+end
+D          lost 
+
+
+NOTES: Deposition rate NOTA: abbiamo depositato poco alla volta poiché si stava scaldando tanto e depositava lentamente, lo spessore è aumentato molto velocemente di 0.4 nm quando abbiamo spento il circuito Circa 0.1 nm ogni 4 s 30 min circa 0 caduto 5 girato, poco rigato dalla bilancia 11 c'era una macchia di liquido, si è asciugata da sola ma ha macchiato Nota: A è storto
