@@ -1,9 +1,21 @@
 #!/bin/bash
 
 Run_dir=../Run_Data/$1
+debug=$2
+print=$3
 
 # Directory where the files are located
 source_dir="../Lab_Data/"
+
+echo =========================================
+echo Run.sh call
+echo Run_dir: "$Run_dir"
+echo debug "$debug"
+echo source_dir "$source_dir"
+echo =========================================
+
+#checking for updates in source code
+make
 
 # Substring to search for in filenames
 substring=$1
@@ -14,9 +26,7 @@ mkdir -p "$Run_dir"
 # Find files containing the substring in their names and copy them to the copy directory
 find "$source_dir" -type f -name "*$substring*.txt" ! -name "*out*" -exec cp {} "$Run_dir" \;
 
-echo "Files containing '$substring' in their names have been copied to $copy_dir"
-
-
+echo "Files containing '$substring' in their names have been copied to $Run_dir"
 
 output_name=Data_names.txt
 
@@ -40,6 +50,6 @@ done
 # Change directory back to the original directory
 cd - > /dev/null
 
-./Run -Run $1 -print 1 -noApp 1
+./Run -Run $1 -print $print -noApp 0 -debug "$debug"
 
 echo "Filenames have been written to $Run_dir/$output_name"

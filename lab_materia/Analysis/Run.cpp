@@ -7,6 +7,7 @@
 #include "TAxis.h"
 #include "TApplication.h"
 #include "TF1.h"
+#include "TMultiGraph.h"
 
 using namespace std;
 
@@ -37,7 +38,6 @@ int main(int argc, const char** argv){
         if(!strcmp(argv[i], "-debug")){debug = atoi(argv[++i]);}
         if(!strcmp(argv[i], "-print")){print = atoi(argv[++i]);}
         if(!strcmp(argv[i], "-noApp")){noApp = atoi(argv[++i]);}
-        
     }
     cout<<"debug:\t"<<debug<<endl;
     cout<<"print:\t"<<print<<endl;
@@ -46,7 +46,6 @@ int main(int argc, const char** argv){
     if(debug){cout<<"Main Starts"<<endl;}
 
     name_print = run;
-    //path = "../../Run_Data/" + run + "/";
     path = "../Run_Data/"+run+"/";
 
     if(print){
@@ -54,15 +53,29 @@ int main(int argc, const char** argv){
         can.cd();
         can.Print((path + "out_" + name_print + ".pdf[").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
     }
+    TabValues Johnson;
+    Johnson.ReadTabData("../Tab_Data/Johnson.txt");
+    Johnson.ScaleLambda(1000);
+    Johnson.UpdateART();
+
+    TabValues Palik;
+    Palik.ReadTabData("../Tab_Data/Palik.txt");
+    Palik.ScaleLambda(1000);
+    Palik.UpdateART();
 
     Run MyRun;
     MyRun.Init(run);
     MyRun.SetAll();
+
+    //fitting thickness
+    //MyRun.FitAllThick(Palik);
+
     MyRun.DrawAll();
     MyRun.DrawAllSame("P same", 0, 0.5, 300, 900);
     MyRun.DrawInner("P same", 0, 0.5, 300, 900);
     MyRun.DrawOuter("P same", 0, 0.5, 300, 900);
     MyRun.DrawAdditional("P same", 0, 0.5, 300, 900);
+
 
     if(print){
         TCanvas can;

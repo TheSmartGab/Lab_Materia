@@ -59,7 +59,7 @@ int main(int argc, const char **argv){
         TCanvas can;
         can.Print((path + "out_" + name_print + ".pdf[").c_str(), (path + "out_" + name_print + ".pdf[").c_str());
     }
-    int fit_grade = 11;
+    int fit_grade = 8;
     vector<double> params;
     string expr="";
     for(int i=0; i<=fit_grade; i++){

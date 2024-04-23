@@ -1,6 +1,7 @@
 NOTE: the article regarding our spectrum was not accessible, Palik reported in general deposition rate in the range 1-6 nm/spectrum
 
 Rate: 3.5
+Thick: 35
 
 wl n
 0.1800	1.4700
