@@ -1,0 +1,12 @@
+Further Measures were taken in order to characterize the response of the experimental setup to glass. 
+
+Observations
+1) The absorbance graph is but 1-T, T is the only value that the setup could possibly measure. 
+2) Negative Values were observed for glass_glasse(T) in the NUV region where glass absorbs most of the incident Intensity. Could be due to problems with readout electronics when
+   the signal is below the sensibility of the instrument
+
+Possible explanation for air-air graph from last time:
+The light is split in a different way by the monocrhomator in the two lines for the different wavelenghts. Note that both signals are analyzed with only one photomultiplier.
+
+To do:
+find what is exactely the monochromator in the machine
