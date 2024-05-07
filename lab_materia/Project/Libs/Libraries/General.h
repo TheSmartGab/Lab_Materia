@@ -15,6 +15,8 @@
 #include "TLegend.h"
 #include "TMultiGraph.h"
 #include "TMath.h"
+#include "TVector3.h"
+#include "Math/MinimizerOptions.h"
 
 using namespace std;
 
@@ -25,12 +27,24 @@ class Run;
 class Run_Info;
 class Glass_Info;
 class Disk_Geo;
+class TDistribution;
+class ThicknessPoint;
 
 extern int debug;
 extern int print;
 extern int fit;
 extern string path;
 extern string name_print;
+
+// Inside a function or method body
+inline void setDefaultMinimizerOptions() {
+    ROOT::Math::MinimizerOptions::SetDefaultMaxFunctionCalls(10000000); // Set maximum number of function calls
+    ROOT::Math::MinimizerOptions::SetDefaultMaxIterations(100000);     // Set maximum number of iterations
+    ROOT::Math::MinimizerOptions::SetDefaultTolerance(1e-15);         // Set tolerance for convergence
+    ROOT::Math::MinimizerOptions::SetDefaultPrecision(1e-15);          // Set precision
+}
+
+
 
 static string BIAS_FILE = "../Lab_Data/20_03_24/200324_aria_aria_1.txt";
 static string Run_Data_Dir = "../Run_Data/";

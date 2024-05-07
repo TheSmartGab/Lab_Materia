@@ -104,6 +104,7 @@ class Measurements{
     double GetRate() const {return _Rate;};
     string GetID() const {return ID;};
     string GetType() const {return Type;};
+    double GetThickError() const {return Thick_func->GetParError(0);}
 
     void push_back(const Measure &meas){
         _Data.push_back(meas);
@@ -173,9 +174,11 @@ class Measurements{
     };
 
     void UpdateCanvas(){
-        can->cd();
-        gPad->Modified();
-        gPad->Update();
+        if(can){
+            can->cd();
+            gPad->Modified();
+            gPad->Update();
+        }
     }
 
     private:

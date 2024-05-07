@@ -43,6 +43,11 @@ class TabValues{
         nFit = new TF1("nFit", this, &TabValues::CustomPiecewise, subrangeBoundaries[0], subrangeBoundaries[Size - 1], (Grade + 1) * (Size - 1));
         kFit = new TF1("kFit", this, &TabValues::CustomPiecewise, subrangeBoundaries[0], subrangeBoundaries[Size - 1], (Grade + 1) * (Size - 1));
 
+        for(int i=0; i<grade+1; i++){
+            nFit->SetParameter(i, 1000);
+            kFit->SetParameter(i, 1000);
+        }
+
         nFit->SetParameters(parameters);
         kFit->SetParameters(parameters); 
     };
@@ -144,7 +149,6 @@ class TabValues{
         _RMeas.Draw(opt, LegendEntry, xl1, xl2, yl1, yl2);
     }
     void DrawT(const char *opt="AP", const char *LegendEntry="", const double& xl1= 0.7, const double&xl2 = 1, const double& yl1 = 0.9, const double& yl2 = 1){
-        _TMeas.Draw(opt, LegendEntry, xl1, xl2, yl1, yl2);
 
         int Nvalues = 10000;
         double xmin = 350; 
@@ -162,7 +166,10 @@ class TabValues{
         InterpoledT->SetMarkerColor(2);
         InterpoledT->SetMarkerSize(0.35);
 
+        _TMeas.Draw(opt, LegendEntry, xl1, xl2, yl1, yl2);
         _TMeas.AddGraph(InterpoledT, "P");
+        //_TMeas.Draw(opt, LegendEntry, xl1, xl2, yl1, yl2);
+
     }
     void DrawT(TCanvas *can, const char *opt="AP", const double& xl1= 0.7, const double&xl2 = 1, const double& yl1 = 0.9, const double& yl2 = 1){
         _TMeas.DrawCanvas(*can, opt, xl2, yl1, yl2);
@@ -186,7 +193,7 @@ class TabValues{
         _nMeas.DrawCanvas(ext_can, opt, xl1, xl2, (yl1+yl2)/2, yl2);
     };
 
-    void DoAll(string path, string name, string expr = "", vector<double> params = vector<double>(), int ncolor = 3 , int kcolor = 4, int nfitcolor = 2, int kfitcolor = 2);
+    void DoAll(string path, string name, string expr = "", vector<double> params = vector<double>(), int ncolor = 3 , int kcolor = 4, int nfitcolor = 2, int kfitcolor = 2, const double& Tmin=0, const double& Tmax=0.2);
 
     double nLI(const double &lambda) const {
         return _nMeas.Linear_Interpolator(lambda);
@@ -237,7 +244,7 @@ class TabValues{
 
         // If x is outside all subranges, return 0
         if (subrangeIndex == -1) {
-            cout<<"CustomPiecewise: Warning: lambda passed "<<x[0]<<" is out of range, check subrange boundaries"<<endl;
+            if(debug){cout<<"CustomPiecewise: Warning: lambda passed "<<x[0]<<" is out of range, check subrange boundaries"<<endl;}
             return 0;
         }
 
