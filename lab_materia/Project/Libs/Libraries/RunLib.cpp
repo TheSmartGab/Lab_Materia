@@ -65,6 +65,7 @@ void Run::Init(string run_num){
 
     DG_FromFile(Disk_Geo_File.c_str());
     RI_FromFile(RI_File.c_str());
+    UpdateGeometry();
     ChargeDataNames();
     LoadRunData();
     CorrectAll();

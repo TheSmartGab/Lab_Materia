@@ -66,9 +66,9 @@ int main(int argc, const char **argv){
     TabValues Palik(5, PB, 5);
     Palik.DoAll(path, name6, expr, params, 4, 5);
 
-    double LB[] = {280, 380, 460, 600, 1000};
-    TabValues Lemachard(5, LB, 5);
-    Lemachard.DoAll(path, name2, expr, params);
+    double LB[] = {300, 400, 480, 600, 1000};
+    TabValues Lemachard(6, LB, 5);
+    Lemachard.DoAll(path, name2, expr, params, 3, 4, 2, 2, 0, 1);
 
     double CB[] = {280, 320, 380, 460, 515, 600, 690, 790, 1000};
     TabValues Cielsky(7, CB, 9);
@@ -76,7 +76,7 @@ int main(int argc, const char **argv){
 
     double RB[] = {300, 350, 400, 450, 500, 550, 650, 1000};
     TabValues Rosenblat(6, RB, 8);
-    Rosenblat.DoAll(path, name4, expr, params, 2, 3);
+    Rosenblat.DoAll(path, name4, expr, params, 2, 3, 2, 2, 0, 1);
 
     double YV[] = {300, 400, 500, 600, 800, 1000};
     TabValues Yakubonsky(5, JB, 6);

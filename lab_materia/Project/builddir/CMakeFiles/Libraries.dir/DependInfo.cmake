@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/Info.cpp" "CMakeFiles/Libraries.dir/Libs/Libraries/Info.cpp.o" "gcc" "CMakeFiles/Libraries.dir/Libs/Libraries/Info.cpp.o.d"
   "/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/Measurements.cpp" "CMakeFiles/Libraries.dir/Libs/Libraries/Measurements.cpp.o" "gcc" "CMakeFiles/Libraries.dir/Libs/Libraries/Measurements.cpp.o.d"
   "/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/RunLib.cpp" "CMakeFiles/Libraries.dir/Libs/Libraries/RunLib.cpp.o" "gcc" "CMakeFiles/Libraries.dir/Libs/Libraries/RunLib.cpp.o.d"
+  "/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/TDistribution.cpp" "CMakeFiles/Libraries.dir/Libs/Libraries/TDistribution.cpp.o" "gcc" "CMakeFiles/Libraries.dir/Libs/Libraries/TDistribution.cpp.o.d"
   "/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/TabValues.cpp" "CMakeFiles/Libraries.dir/Libs/Libraries/TabValues.cpp.o" "gcc" "CMakeFiles/Libraries.dir/Libs/Libraries/TabValues.cpp.o.d"
   )
 

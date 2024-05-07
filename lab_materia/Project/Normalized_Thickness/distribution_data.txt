@@ -1,0 +1,71 @@
+==================================
+TD_Starts
+RunNumber: Run_2
+NameFitter: Cielsky
+Point
+Pos: 0.0519 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.653101
+ThickError: 0.000604937
+Point
+Pos: 1.35936e-18 0.0222 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.925795
+ThickError: 0.000670724
+Point
+Pos: -4.07807e-18 -0.0222 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.895814
+ThickError: 0.00066003
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 1
+ThickError: 0.000775659
+Point
+Pos: -0.0519 6.35592e-18 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.665731
+ThickError: 0.000675546
+Point
+Pos: 5.10678e-18 0.0834 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.368885
+ThickError: 0.00108565
+Point
+Pos: -0.087 1.06544e-17 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.355751
+ThickError: 0.00112517
+Point
+Pos: 0.0222 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.889598
+ThickError: 0.000551737
+Point
+Pos: -0.0222 2.71872e-18 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.917944
+ThickError: 0.00065861
+Point
+Pos: -0.016038 0.0493598 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.660802
+ThickError: 0.00061202
+Point
+Pos: -0.016038 -0.0493598 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.641185
+ThickError: 0.000594375
+Point
+Pos: 0.0818 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.319485
+ThickError: 0.000947964
+Point
+Pos: -1.7194e-17 -0.0936 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 0.364337
+ThickError: 0.000874165
+TD_Ends
+==================================

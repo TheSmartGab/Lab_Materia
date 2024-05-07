@@ -102,7 +102,7 @@ void TabValues::SetFitT(const char* function, double x_min, double x_max, const 
     _TMeas.SetFit(function, x_min, x_max, params, line_col, entry);
 };
 
-void TabValues::DoAll(string path, string name, string expr, vector<double> params, int ncolor, int kcolor, int nfitcolor, int kfitcolor){
+void TabValues::DoAll(string path, string name, string expr, vector<double> params, int ncolor, int kcolor, int nfitcolor, int kfitcolor, const double& Tmin, const double& Tmax){
     if(debug){cout<<"DoAll Begins"<<endl;}
 
     ReadTabData((path+name).c_str());
@@ -113,7 +113,7 @@ void TabValues::DoAll(string path, string name, string expr, vector<double> para
     SetGraphK(("k "+name).c_str(), "Lambda", "", 8, kcolor);
     SetGraphA(("A "+name).c_str(), "Lambda", "", 8, kcolor, 0, 1);
     SetGraphR(("R "+name).c_str(), "Lambda", "", 8, kcolor, 0, 1);
-    SetGraphT(("T "+name).c_str(), "Lambda", "", 8, kcolor, 0, 0.2);
+    SetGraphT(("T "+name).c_str(), "Lambda", "", 8, kcolor, Tmin, Tmax);
 
 
     // if(fit){ //this tries to fit with a polynomial the whole n, k and T measures
@@ -133,7 +133,7 @@ void TabValues::DoAll(string path, string name, string expr, vector<double> para
     DrawA();
     DrawR();
     DrawT();
-    Draw("P same", 0, 14, 250, 1000);
+    Draw("P same", 0, 8, 250, 1000);
 
     if(debug){cout<<"Do All Ends"<<endl;}
 };

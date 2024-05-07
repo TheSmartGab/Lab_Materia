@@ -143,6 +143,19 @@ AbsToTrans/fast:
 .PHONY : AbsToTrans/fast
 
 #=============================================================================
+# Target rules for targets named DrawNormalizedThick
+
+# Build rule for target.
+DrawNormalizedThick: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DrawNormalizedThick
+.PHONY : DrawNormalizedThick
+
+# fast build rule for target.
+DrawNormalizedThick/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawNormalizedThick.dir/build.make CMakeFiles/DrawNormalizedThick.dir/build
+.PHONY : DrawNormalizedThick/fast
+
+#=============================================================================
 # Target rules for targets named DrawTabs
 
 # Build rule for target.
@@ -253,6 +266,30 @@ Libs/Libraries/RunLib.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/RunLib.cpp.s
 .PHONY : Libs/Libraries/RunLib.cpp.s
 
+Libs/Libraries/TDistribution.o: Libs/Libraries/TDistribution.cpp.o
+.PHONY : Libs/Libraries/TDistribution.o
+
+# target to build an object file
+Libs/Libraries/TDistribution.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/TDistribution.cpp.o
+.PHONY : Libs/Libraries/TDistribution.cpp.o
+
+Libs/Libraries/TDistribution.i: Libs/Libraries/TDistribution.cpp.i
+.PHONY : Libs/Libraries/TDistribution.i
+
+# target to preprocess a source file
+Libs/Libraries/TDistribution.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/TDistribution.cpp.i
+.PHONY : Libs/Libraries/TDistribution.cpp.i
+
+Libs/Libraries/TDistribution.s: Libs/Libraries/TDistribution.cpp.s
+.PHONY : Libs/Libraries/TDistribution.s
+
+# target to generate assembly for a file
+Libs/Libraries/TDistribution.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/TDistribution.cpp.s
+.PHONY : Libs/Libraries/TDistribution.cpp.s
+
 Libs/Libraries/TabValues.o: Libs/Libraries/TabValues.cpp.o
 .PHONY : Libs/Libraries/TabValues.o
 
@@ -300,6 +337,30 @@ Macros/AbsToTrans.s: Macros/AbsToTrans.cpp.s
 Macros/AbsToTrans.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AbsToTrans.dir/build.make CMakeFiles/AbsToTrans.dir/Macros/AbsToTrans.cpp.s
 .PHONY : Macros/AbsToTrans.cpp.s
+
+Macros/DrawNormalizedThick.o: Macros/DrawNormalizedThick.cpp.o
+.PHONY : Macros/DrawNormalizedThick.o
+
+# target to build an object file
+Macros/DrawNormalizedThick.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawNormalizedThick.dir/build.make CMakeFiles/DrawNormalizedThick.dir/Macros/DrawNormalizedThick.cpp.o
+.PHONY : Macros/DrawNormalizedThick.cpp.o
+
+Macros/DrawNormalizedThick.i: Macros/DrawNormalizedThick.cpp.i
+.PHONY : Macros/DrawNormalizedThick.i
+
+# target to preprocess a source file
+Macros/DrawNormalizedThick.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawNormalizedThick.dir/build.make CMakeFiles/DrawNormalizedThick.dir/Macros/DrawNormalizedThick.cpp.i
+.PHONY : Macros/DrawNormalizedThick.cpp.i
+
+Macros/DrawNormalizedThick.s: Macros/DrawNormalizedThick.cpp.s
+.PHONY : Macros/DrawNormalizedThick.s
+
+# target to generate assembly for a file
+Macros/DrawNormalizedThick.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawNormalizedThick.dir/build.make CMakeFiles/DrawNormalizedThick.dir/Macros/DrawNormalizedThick.cpp.s
+.PHONY : Macros/DrawNormalizedThick.cpp.s
 
 Macros/DrawTabs.o: Macros/DrawTabs.cpp.o
 .PHONY : Macros/DrawTabs.o
@@ -382,6 +443,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AbsToTrans"
+	@echo "... DrawNormalizedThick"
 	@echo "... DrawTabs"
 	@echo "... Libraries"
 	@echo "... Run"
@@ -395,12 +457,18 @@ help:
 	@echo "... Libs/Libraries/RunLib.o"
 	@echo "... Libs/Libraries/RunLib.i"
 	@echo "... Libs/Libraries/RunLib.s"
+	@echo "... Libs/Libraries/TDistribution.o"
+	@echo "... Libs/Libraries/TDistribution.i"
+	@echo "... Libs/Libraries/TDistribution.s"
 	@echo "... Libs/Libraries/TabValues.o"
 	@echo "... Libs/Libraries/TabValues.i"
 	@echo "... Libs/Libraries/TabValues.s"
 	@echo "... Macros/AbsToTrans.o"
 	@echo "... Macros/AbsToTrans.i"
 	@echo "... Macros/AbsToTrans.s"
+	@echo "... Macros/DrawNormalizedThick.o"
+	@echo "... Macros/DrawNormalizedThick.i"
+	@echo "... Macros/DrawNormalizedThick.s"
 	@echo "... Macros/DrawTabs.o"
 	@echo "... Macros/DrawTabs.i"
 	@echo "... Macros/DrawTabs.s"
