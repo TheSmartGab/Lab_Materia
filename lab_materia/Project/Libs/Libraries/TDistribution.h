@@ -201,6 +201,10 @@ class TDistribution{
         graph2D->GetXaxis()->SetLimits(xmin2, xmax2);
         graph2D->GetYaxis()->SetLimits(ymin2, ymax2);
 
+        if(print){
+            can1D->Print((path + "out_" + name_print + ".pdf").c_str(), (path + "out_" + name_print + ".pdf").c_str());
+        }
+
         can2D->cd();
 
         Fit2D = new TF2("fit2D", 
@@ -237,7 +241,9 @@ class TDistribution{
         legend2D->AddEntry(graph1D, ("Thickness fitted with "+name_fitter).c_str(), "P");
         legend2D->Draw("same");
         if(debug){graph2D->Print();}
-
+        if(print){
+            can2D->Print((path + "out_" + name_print + ".pdf").c_str(), (path + "out_" + name_print + ".pdf").c_str());
+        }
         if(debug){cout<<"DoAllGraphs Ends"<<endl;}
     }
 

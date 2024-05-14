@@ -68,6 +68,8 @@ int main(int argc, const char** argv){
         if(i != fit_grade){expr += "+";}
     }
 
+    setDefaultMinimizerOptions();
+
     // double JB[] = {280, 420, 590, 1000};
     // TabValues *Johnson = new TabValues(6, JB, 4);
     // Johnson->DoAll("../Tab_Data/", "Johnson.txt", expr, params);
@@ -78,9 +80,9 @@ int main(int argc, const char** argv){
     // Palik->DoAll("../Tab_Data/", "Palik.txt", expr, params);
     // Palik->Close();
 
-    setDefaultMinimizerOptions();
 
-    double CB[] = {280, 340, 400, 460, 520, 600, 690, 790, 1000};
+
+    double CB[] = {280, 340, 400, 465, 520, 600, 690, 790, 1000};
     TabValues *Cielsky = new TabValues(6, CB, 9);
     Cielsky->DoAll("../Tab_Data/", "Cielsky.txt", expr, params);
 
@@ -91,34 +93,30 @@ int main(int argc, const char** argv){
 
     // double LB[] = {280, 350, 450, 550, 1000};
     // TabValues *Lemachard = new TabValues(6, LB, 5);
-    // //Lemachard->DoAll("../Tab_Data/", "Lemarchand.txt",  expr, params, 3, 4, 2, 2, 0, 1);
+    // Lemachard->DoAll("../Tab_Data/", "Lemarchand.txt",  expr, params, 3, 4, 2, 2, 0, 1);
     // Lemachard->Close();
 
     Run *MyRun = new Run();
     MyRun->Init(run);
-    MyRun->SetAll();
+    MyRun->SetAll(300, 900, 0, 1);
 
     //fitting thickness
-    MyRun->FitAllThick(*Cielsky, 350., 450.);
-    MyRun->SetNameFitter("Cielsky");
+    MyRun->FitAllThick(*Cielsky, 320, 480.);
+    MyRun->SetNameFitter("Lemachard");
 
     MyRun->DrawAll();
-    MyRun->CloseAllCan();
+    //MyRun->CloseAllCan();
     MyRun->CloseRaws();
     MyRun->CloseCorrected();
-    MyRun->DrawInner("P same", 0, 0.5, 300, 900);
-    MyRun->DrawOuter("P same", 0, 0.5, 300, 900);
-    MyRun->DrawAdditional("P same", 0, 0.5, 300, 900);
-    MyRun->DrawAllSame("P same", 0, 0.5, 300, 900); //by putting this last, we ensure that all the legends are visible
-
-    // MyRun->SetThickGraph("Fitted Thickness");
-    // MyRun->FitThickGraph();
-    // MyRun->DrawThickGraph();
+    MyRun->DrawInner("P same", 0, 1, 300, 900);
+    MyRun->DrawOuter("P same", 0, 1, 300, 900);
+    MyRun->DrawAdditional("P same", 0, 1, 300, 900);
+    MyRun->DrawAllSame("P same", 0, 1, 300, 900); //by putting this last, we ensure that all the legends are visible
 
     MyRun->SetTD();
     MyRun->DoAllGraphs();
 
-    //MyRun->UpdateAll();
+    MyRun->UpdateAll();
 
     if(print){
         TCanvas can;
@@ -130,8 +128,6 @@ int main(int argc, const char** argv){
     // Open a file in append mode
 
     if(add){    
-
-
         ofstream RunOut(("../Run_Data/"+run+"/Thickness_Fitted.txt"), ios_base::app);
         if (!RunOut.is_open()) { // Corrected check
             cout << "Error: Unable to open file for appending."<<endl;

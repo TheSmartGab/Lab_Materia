@@ -1,0 +1,23 @@
+Crogiolo
+Type            Misura[mg]          Low[mg]         High[mg]
+Initial         1930.2              1930.2          1930.2                       
+Gold            2749.2              2749.2          2749.2
+Final           2738.8              2738.8          2738.8
+Geometry
+Height[m]: 0.028
+
+Balance_ID: 9
+Balance_Thick[nm]: 0
+Tot_time[s]: 0
+
+Additional glasses
+Type: Additional
+ID          R[m]
+A          0.0750
+B          0.0765
+C          0.0725
+D          0.0765
+end
+
+
+NOTES: Interruzioni a 58s, 169s, 184s, l'ultima misura della bilancia per il crogiolo oscilla molto, il 15 si è rigirato, A ha una ditata

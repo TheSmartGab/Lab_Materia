@@ -191,7 +191,7 @@ void Run::DrawAdditional(const char* opt, const double& min, const double& max, 
     if(debug){cout<<"DrawAdditional Ends"<<endl;}
 };
 
-void Run::SetAll(){
+void Run::SetAll(const double& xmin, const double& xmax, const double& min, const double& max){
     if(debug){cout<<"SetAll Begins"<<endl;}
 
     Bias.SetGraph("Bias", "lambda", "Transmittance", 8, 4, -1, 3.5, 320, 1000);
@@ -199,8 +199,8 @@ void Run::SetAll(){
     for(int i = 0; i<n_meas; i++){
         string title = v_data_names[i];
         while(color >= 10 && color < 30){color++;} //grey scale not really readable
-        _CorrectData[i].SetGraph(title.c_str(), "lambda[nm]", "Transmittance", 8, color, 0, 0.5, 300, 1000);
-        _RunData[i].SetGraph(("Raw_"+title).c_str(), "lambda[nm]", "Transmittance", 8, color, 0, 0.5, 300, 1000);
+        _CorrectData[i].SetGraph(title.c_str(), "lambda[nm]", "Transmittance", 8, color, min, max, xmin, xmax);
+        _RunData[i].SetGraph(("Raw_"+title).c_str(), "lambda[nm]", "Transmittance", 8, color, min, max, xmin, xmax);
         color++;
     }
 

@@ -2,7 +2,6 @@ NOTE: the film was annealed, Temperature and rates are not reported in the artic
 
 Thick: 3.96
 
-
 wl	n
 0.350	2.19199681
 0.355	2.11002639
