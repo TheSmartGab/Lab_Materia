@@ -46,7 +46,7 @@ class Run: public Disk_Geo, public Run_Info, public TDistribution{
 
     void Init(string run_num);
 
-    void SetAll();
+    void SetAll(const double& xmin = 300, const double& xmax = 900, const double& min = 0, const double& max = 0.5);
     void DrawAll();
 
     void DrawAllSame(const char* opt = "P same", const double& min = 0, const double& max = 1, const double& xmin = 300, const double& xmax = 900, const char* XTitle = "lambda [nm]", const char* YTitle = "Transmittance");

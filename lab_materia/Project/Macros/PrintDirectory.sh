@@ -3,7 +3,11 @@
 path_name="../Run_Data/Run_2/"
 main_file="../builddir/main"
 
-for filename in $path_name*.txt; do
+
+ls "$path_name"
+
+
+for filename in "$path_name"*.txt; do
 
     if [[ $filename == *"out"* ]]; then
         continue
@@ -14,9 +18,13 @@ for filename in $path_name*.txt; do
     if [[ $filename == *"Description"* ]]; then
         continue
     fi      
-    if [[ $filename == *"Data_nanes"* ]]; then
+    if [[ $filename == *"Data_names"* ]]; then
         continue
     fi   
-    $main_file -name $(basename "$filename" .txt) -path $path_name -print 1 -noApp 1
+    if [[ $filename == *"Thickness_Fitted"* ]]; then
+        continue
+    fi   
+
+    "$main_file" -name "$(basename "$filename" .txt)" -path "$path_name" -print 1 -noApp 1 -debug 1
 
 done

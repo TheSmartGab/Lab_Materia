@@ -69,3 +69,119 @@ Thickness: 11.6303
 ThickError: 0.0279051
 TD_Ends
 ==================================
+==================================
+TD_Starts
+RunNumber: Run_2
+NameFitter: Cielsky
+Point
+Pos: 0.0519 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 17.9956
+ThickError: 0.316963
+Point
+Pos: 1.35936e-18 0.0222 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 26.4901
+ThickError: 0.283961
+Point
+Pos: -4.07807e-18 -0.0222 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 25.674
+ThickError: 0.288983
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 29.9243
+ThickError: 0.359022
+Point
+Pos: -0.0519 6.35592e-18 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 17.3447
+ThickError: 0.285541
+Point
+Pos: 5.10678e-18 0.0834 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 5.70381
+ThickError: 0.340397
+Point
+Pos: -0.087 1.06544e-17 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 6.14796
+ThickError: 0.382269
+Point
+Pos: 0.0222 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 22.2869
+ThickError: 0.21829
+Point
+Pos: -0.0222 2.71872e-18 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 22.6017
+ThickError: 0.224825
+Point
+Pos: -0.016038 0.0493598 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 17.2398
+ThickError: 0.280467
+Point
+Pos: -0.016038 -0.0493598 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 17.7518
+ThickError: 0.327644
+Point
+Pos: 0.0818 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 4.88317
+ThickError: 0.302514
+Point
+Pos: -1.7194e-17 -0.0936 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 6.46779
+ThickError: 0.302707
+Point
+Pos: 0.0519 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 18.4905
+ThickError: 0.323212
+Point
+Pos: 1.35936e-18 0.0222 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 25.6267
+ThickError: 0.28905
+Point
+Pos: -4.07807e-18 -0.0222 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 26.0736
+ThickError: 0.292352
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 30.1011
+ThickError: 0.360503
+Point
+Pos: -0.0519 6.35592e-18 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 17.3377
+ThickError: 0.286889
+Point
+Pos: 5.10678e-18 0.0834 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 5.19817
+ThickError: 0.346935
+Point
+Pos: -0.087 1.06544e-17 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 5.63974
+ThickError: 0.384867
+Point
+Pos: 0.0222 0 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 19.9514
+ThickError: 0.272954
+Point
+Pos: -0.016038 -0.0493598 0.107
+PosErr: 0.001 0.001 0.001
+Thickness: 17.074
+ThickError: 0.327367
+TD_Ends
+==================================

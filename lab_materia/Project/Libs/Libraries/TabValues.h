@@ -211,7 +211,7 @@ class TabValues{
         double k = kFit->Eval(x[0]);
         double alpha = 4*M_PI*k / x[0];
 
-        return (1-( (pow(n-1., 2) + pow(k,2)) / (pow(n+1., 2) + pow(k, 2)) )) * exp( -alpha * par[0]);
+        return (1 - ( (pow(n-1., 2) + pow(k,2)) / (pow(n+1., 2) + pow(k, 2)) )) * exp( -alpha * par[0]);
     }
 
     double ComputeT(const double& lambda){

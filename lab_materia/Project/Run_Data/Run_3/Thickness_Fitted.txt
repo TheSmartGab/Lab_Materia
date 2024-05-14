@@ -1,0 +1,182 @@
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 26.4116
+ThickError: 0.0329051
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 4.35558
+ThickError: 0.0394835
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 0.866679
+ThickError: 0.038334
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 3.37074
+ThickError: 0.037648
+TD_Ends
+==================================
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 26.4116
+ThickError: 0.0329051
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 4.35558
+ThickError: 0.0394835
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 0.866679
+ThickError: 0.038334
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 3.37074
+ThickError: 0.037648
+TD_Ends
+==================================
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 26.4116
+ThickError: 0.0329051
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 4.35558
+ThickError: 0.0394835
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 0.866679
+ThickError: 0.038334
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 3.37074
+ThickError: 0.037648
+TD_Ends
+==================================
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 20.8786
+ThickError: 0.445846
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 0.65585
+ThickError: 0.373734
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 3.93023e-15
+ThickError: 0.128112
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 5.78736e-12
+ThickError: 1.21563
+TD_Ends
+==================================
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 8.59176e-13
+ThickError: 0.238223
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 3.98444e-15
+ThickError: 0.236762
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 5.2741e-13
+ThickError: 0.239273
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 0
+ThickError: 0.237897
+TD_Ends
+==================================
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 5.95598
+ThickError: 0.0229412
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 7.07659e-13
+ThickError: 0.115471
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 2.43756e-13
+ThickError: 0.115882
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 4.31458e-13
+ThickError: 0.115456
+TD_Ends
+==================================
+==================================
+TD_Starts
+RunNumber: Run_3
+NameFitter: Cielsky
+Point
+Pos: 0 0 0
+PosErr: 0.001 0.001 0.001
+Thickness: 21.3822
+ThickError: 0.379509
+Point
+Pos: -0.016038 -0.0493598 1.39327e-321
+PosErr: 0.001 0.001 0.001
+Thickness: 0.155297
+ThickError: 0.520737
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 0
+ThickError: 0.0589363
+Point
+Pos: -9999 -9999 -9999
+PosErr: 0.001 0.001 0.001
+Thickness: 2.19166e-12
+ThickError: 0.207291
+TD_Ends
+==================================
