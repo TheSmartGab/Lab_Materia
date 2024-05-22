@@ -42,6 +42,14 @@ class Measure{
         return Measure(_lambda, subtracted_value);
     }
 
+    Measure operator/(const Measure& other) const {
+        // Subtract the values of the two Measure objects
+        double divided = _value / other._value;
+
+        // Create and return a new Measure object with the result
+        return Measure(_lambda, divided);
+    }
+
     private:
     double _lambda;
     double _value;

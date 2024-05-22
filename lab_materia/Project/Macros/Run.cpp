@@ -82,35 +82,43 @@ int main(int argc, const char** argv){
 
 
 
-    double CB[] = {280, 340, 400, 465, 520, 600, 690, 790, 1000};
-    TabValues *Cielsky = new TabValues(6, CB, 9);
-    Cielsky->DoAll("../Tab_Data/", "Cielsky.txt", expr, params);
+    // double CB[] = {280, 340, 400, 465, 520, 600, 690, 790, 1000};
+    // TabValues *Cielsky = new TabValues(6, CB, 9);
+    // Cielsky->DoAll("../Tab_Data/", "Cielsky.txt", expr, params);
 
     // double RB[] = {300, 350, 400, 450, 500, 550, 650, 1000};
     // TabValues *Rosenblat = new TabValues(6, RB, 8);
-    //Rosenblat->DoAll("../Tab_Data/", "Rosenblat.txt", expr, params);
-    // Rosenblat->Close();
+    // Rosenblat->DoAll("../Tab_Data/", "Rosenblat.txt", expr, params);
 
     // double LB[] = {280, 350, 450, 550, 1000};
     // TabValues *Lemachard = new TabValues(6, LB, 5);
     // Lemachard->DoAll("../Tab_Data/", "Lemarchand.txt",  expr, params, 3, 4, 2, 2, 0, 1);
-    // Lemachard->Close();
+
+    double OB[] = {300, 400, 500, 600, 800, 1000};
+    TabValues *Olmon = new TabValues(5, OB, 6);
+    Olmon->DoAll("../Tab_Data/", "Olmon.txt", expr, params, 4, 6, 2, 2, 0, 1);
 
     Run *MyRun = new Run();
     MyRun->Init(run);
     MyRun->SetAll(300, 900, 0, 1);
 
     //fitting thickness
-    MyRun->FitAllThick(*Cielsky, 320, 480.);
-    MyRun->SetNameFitter("Lemachard");
+    MyRun->FitAllThick(*Olmon, 320, 480.);
+    MyRun->SetNameFitter("Olmon");
 
     MyRun->DrawAll();
     //MyRun->CloseAllCan();
     MyRun->CloseRaws();
     MyRun->CloseCorrected();
     MyRun->DrawInner("P same", 0, 1, 300, 900);
+    MyRun->CloseInner();
+
     MyRun->DrawOuter("P same", 0, 1, 300, 900);
+    MyRun->CloseOuter();
+
     MyRun->DrawAdditional("P same", 0, 1, 300, 900);
+    MyRun->CloseAdditional();
+    
     MyRun->DrawAllSame("P same", 0, 1, 300, 900); //by putting this last, we ensure that all the legends are visible
 
     MyRun->SetTD();
@@ -157,8 +165,9 @@ int main(int argc, const char** argv){
 
     // delete Johnson; Johnson = 0x0;
     // delete Palik; Palik = 0x0;
-    delete Cielsky; Cielsky = 0x0;
-    // delete Rosenblat; Rosenblat = 0x0;
+    // delete Cielsky; Cielsky = 0x0;
+    //delete Rosenblat; Rosenblat = 0x0;
     // delete Lemachard; Lemachard = 0x0;
+    delete Olmon; Olmon = 0x0;
     return 0;
 }

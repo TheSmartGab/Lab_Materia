@@ -143,6 +143,19 @@ AbsToTrans/fast:
 .PHONY : AbsToTrans/fast
 
 #=============================================================================
+# Target rules for targets named Difference
+
+# Build rule for target.
+Difference: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Difference
+.PHONY : Difference
+
+# fast build rule for target.
+Difference/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/build
+.PHONY : Difference/fast
+
+#=============================================================================
 # Target rules for targets named DrawNormalizedThick
 
 # Build rule for target.
@@ -167,6 +180,32 @@ DrawTabs: cmake_check_build_system
 DrawTabs/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawTabs.dir/build.make CMakeFiles/DrawTabs.dir/build
 .PHONY : DrawTabs/fast
+
+#=============================================================================
+# Target rules for targets named NameChange
+
+# Build rule for target.
+NameChange: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 NameChange
+.PHONY : NameChange
+
+# fast build rule for target.
+NameChange/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/build
+.PHONY : NameChange/fast
+
+#=============================================================================
+# Target rules for targets named Ratio
+
+# Build rule for target.
+Ratio: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Ratio
+.PHONY : Ratio
+
+# fast build rule for target.
+Ratio/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/build
+.PHONY : Ratio/fast
 
 #=============================================================================
 # Target rules for targets named Run
@@ -338,6 +377,30 @@ Macros/AbsToTrans.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AbsToTrans.dir/build.make CMakeFiles/AbsToTrans.dir/Macros/AbsToTrans.cpp.s
 .PHONY : Macros/AbsToTrans.cpp.s
 
+Macros/Difference.o: Macros/Difference.cpp.o
+.PHONY : Macros/Difference.o
+
+# target to build an object file
+Macros/Difference.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/Macros/Difference.cpp.o
+.PHONY : Macros/Difference.cpp.o
+
+Macros/Difference.i: Macros/Difference.cpp.i
+.PHONY : Macros/Difference.i
+
+# target to preprocess a source file
+Macros/Difference.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/Macros/Difference.cpp.i
+.PHONY : Macros/Difference.cpp.i
+
+Macros/Difference.s: Macros/Difference.cpp.s
+.PHONY : Macros/Difference.s
+
+# target to generate assembly for a file
+Macros/Difference.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/Macros/Difference.cpp.s
+.PHONY : Macros/Difference.cpp.s
+
 Macros/DrawNormalizedThick.o: Macros/DrawNormalizedThick.cpp.o
 .PHONY : Macros/DrawNormalizedThick.o
 
@@ -385,6 +448,54 @@ Macros/DrawTabs.s: Macros/DrawTabs.cpp.s
 Macros/DrawTabs.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawTabs.dir/build.make CMakeFiles/DrawTabs.dir/Macros/DrawTabs.cpp.s
 .PHONY : Macros/DrawTabs.cpp.s
+
+Macros/NameChange.o: Macros/NameChange.cpp.o
+.PHONY : Macros/NameChange.o
+
+# target to build an object file
+Macros/NameChange.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/Macros/NameChange.cpp.o
+.PHONY : Macros/NameChange.cpp.o
+
+Macros/NameChange.i: Macros/NameChange.cpp.i
+.PHONY : Macros/NameChange.i
+
+# target to preprocess a source file
+Macros/NameChange.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/Macros/NameChange.cpp.i
+.PHONY : Macros/NameChange.cpp.i
+
+Macros/NameChange.s: Macros/NameChange.cpp.s
+.PHONY : Macros/NameChange.s
+
+# target to generate assembly for a file
+Macros/NameChange.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/Macros/NameChange.cpp.s
+.PHONY : Macros/NameChange.cpp.s
+
+Macros/Ratio.o: Macros/Ratio.cpp.o
+.PHONY : Macros/Ratio.o
+
+# target to build an object file
+Macros/Ratio.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/Macros/Ratio.cpp.o
+.PHONY : Macros/Ratio.cpp.o
+
+Macros/Ratio.i: Macros/Ratio.cpp.i
+.PHONY : Macros/Ratio.i
+
+# target to preprocess a source file
+Macros/Ratio.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/Macros/Ratio.cpp.i
+.PHONY : Macros/Ratio.cpp.i
+
+Macros/Ratio.s: Macros/Ratio.cpp.s
+.PHONY : Macros/Ratio.s
+
+# target to generate assembly for a file
+Macros/Ratio.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/Macros/Ratio.cpp.s
+.PHONY : Macros/Ratio.cpp.s
 
 Macros/Run.o: Macros/Run.cpp.o
 .PHONY : Macros/Run.o
@@ -443,9 +554,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AbsToTrans"
+	@echo "... Difference"
 	@echo "... DrawNormalizedThick"
 	@echo "... DrawTabs"
 	@echo "... Libraries"
+	@echo "... NameChange"
+	@echo "... Ratio"
 	@echo "... Run"
 	@echo "... main"
 	@echo "... Libs/Libraries/Info.o"
@@ -466,12 +580,21 @@ help:
 	@echo "... Macros/AbsToTrans.o"
 	@echo "... Macros/AbsToTrans.i"
 	@echo "... Macros/AbsToTrans.s"
+	@echo "... Macros/Difference.o"
+	@echo "... Macros/Difference.i"
+	@echo "... Macros/Difference.s"
 	@echo "... Macros/DrawNormalizedThick.o"
 	@echo "... Macros/DrawNormalizedThick.i"
 	@echo "... Macros/DrawNormalizedThick.s"
 	@echo "... Macros/DrawTabs.o"
 	@echo "... Macros/DrawTabs.i"
 	@echo "... Macros/DrawTabs.s"
+	@echo "... Macros/NameChange.o"
+	@echo "... Macros/NameChange.i"
+	@echo "... Macros/NameChange.s"
+	@echo "... Macros/Ratio.o"
+	@echo "... Macros/Ratio.i"
+	@echo "... Macros/Ratio.s"
 	@echo "... Macros/Run.o"
 	@echo "... Macros/Run.i"
 	@echo "... Macros/Run.s"

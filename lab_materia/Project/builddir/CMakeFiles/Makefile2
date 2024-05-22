@@ -65,8 +65,11 @@ CMAKE_BINARY_DIR = /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir
 # The main recursive "all" target.
 all: CMakeFiles/Libraries.dir/all
 all: CMakeFiles/AbsToTrans.dir/all
+all: CMakeFiles/Difference.dir/all
 all: CMakeFiles/DrawNormalizedThick.dir/all
 all: CMakeFiles/DrawTabs.dir/all
+all: CMakeFiles/NameChange.dir/all
+all: CMakeFiles/Ratio.dir/all
 all: CMakeFiles/Run.dir/all
 all: CMakeFiles/main.dir/all
 .PHONY : all
@@ -78,8 +81,11 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/Libraries.dir/clean
 clean: CMakeFiles/AbsToTrans.dir/clean
+clean: CMakeFiles/Difference.dir/clean
 clean: CMakeFiles/DrawNormalizedThick.dir/clean
 clean: CMakeFiles/DrawTabs.dir/clean
+clean: CMakeFiles/NameChange.dir/clean
+clean: CMakeFiles/Ratio.dir/clean
 clean: CMakeFiles/Run.dir/clean
 clean: CMakeFiles/main.dir/clean
 .PHONY : clean
@@ -91,7 +97,7 @@ clean: CMakeFiles/main.dir/clean
 CMakeFiles/Libraries.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=7,8,9,10,11,12 "Built target Libraries"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=9,10,11,12,13,14 "Built target Libraries"
 .PHONY : CMakeFiles/Libraries.dir/all
 
 # Build rule for subdir invocation for target.
@@ -137,13 +143,39 @@ CMakeFiles/AbsToTrans.dir/clean:
 .PHONY : CMakeFiles/AbsToTrans.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/Difference.dir
+
+# All Build rule for target.
+CMakeFiles/Difference.dir/all: CMakeFiles/Libraries.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=3,4 "Built target Difference"
+.PHONY : CMakeFiles/Difference.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Difference.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Difference.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles 0
+.PHONY : CMakeFiles/Difference.dir/rule
+
+# Convenience name for target.
+Difference: CMakeFiles/Difference.dir/rule
+.PHONY : Difference
+
+# clean rule for target.
+CMakeFiles/Difference.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Difference.dir/build.make CMakeFiles/Difference.dir/clean
+.PHONY : CMakeFiles/Difference.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/DrawNormalizedThick.dir
 
 # All Build rule for target.
 CMakeFiles/DrawNormalizedThick.dir/all: CMakeFiles/Libraries.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawNormalizedThick.dir/build.make CMakeFiles/DrawNormalizedThick.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawNormalizedThick.dir/build.make CMakeFiles/DrawNormalizedThick.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=3,4 "Built target DrawNormalizedThick"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=5,6 "Built target DrawNormalizedThick"
 .PHONY : CMakeFiles/DrawNormalizedThick.dir/all
 
 # Build rule for subdir invocation for target.
@@ -169,7 +201,7 @@ CMakeFiles/DrawNormalizedThick.dir/clean:
 CMakeFiles/DrawTabs.dir/all: CMakeFiles/Libraries.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawTabs.dir/build.make CMakeFiles/DrawTabs.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DrawTabs.dir/build.make CMakeFiles/DrawTabs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=5,6 "Built target DrawTabs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=7,8 "Built target DrawTabs"
 .PHONY : CMakeFiles/DrawTabs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -189,13 +221,65 @@ CMakeFiles/DrawTabs.dir/clean:
 .PHONY : CMakeFiles/DrawTabs.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/NameChange.dir
+
+# All Build rule for target.
+CMakeFiles/NameChange.dir/all: CMakeFiles/Libraries.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=15,16 "Built target NameChange"
+.PHONY : CMakeFiles/NameChange.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/NameChange.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/NameChange.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles 0
+.PHONY : CMakeFiles/NameChange.dir/rule
+
+# Convenience name for target.
+NameChange: CMakeFiles/NameChange.dir/rule
+.PHONY : NameChange
+
+# clean rule for target.
+CMakeFiles/NameChange.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NameChange.dir/build.make CMakeFiles/NameChange.dir/clean
+.PHONY : CMakeFiles/NameChange.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Ratio.dir
+
+# All Build rule for target.
+CMakeFiles/Ratio.dir/all: CMakeFiles/Libraries.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=17,18 "Built target Ratio"
+.PHONY : CMakeFiles/Ratio.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Ratio.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Ratio.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles 0
+.PHONY : CMakeFiles/Ratio.dir/rule
+
+# Convenience name for target.
+Ratio: CMakeFiles/Ratio.dir/rule
+.PHONY : Ratio
+
+# clean rule for target.
+CMakeFiles/Ratio.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Ratio.dir/build.make CMakeFiles/Ratio.dir/clean
+.PHONY : CMakeFiles/Ratio.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/Run.dir
 
 # All Build rule for target.
 CMakeFiles/Run.dir/all: CMakeFiles/Libraries.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Run.dir/build.make CMakeFiles/Run.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Run.dir/build.make CMakeFiles/Run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=13,14 "Built target Run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=19,20 "Built target Run"
 .PHONY : CMakeFiles/Run.dir/all
 
 # Build rule for subdir invocation for target.
@@ -221,7 +305,7 @@ CMakeFiles/Run.dir/clean:
 CMakeFiles/main.dir/all: CMakeFiles/Libraries.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=15,16 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gabri/uni/Lab_Materia_copy/lab_materia/Project/builddir/CMakeFiles --progress-num=21,22 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.

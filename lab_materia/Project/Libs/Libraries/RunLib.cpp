@@ -198,7 +198,7 @@ void Run::SetAll(const double& xmin, const double& xmax, const double& min, cons
     int n_meas = _CorrectData.size();
     for(int i = 0; i<n_meas; i++){
         string title = v_data_names[i];
-        while(color >= 10 && color < 30){color++;} //grey scale not really readable
+        if(color >= 10 && color < 30){color+=4;} //grey scale not really readable
         _CorrectData[i].SetGraph(title.c_str(), "lambda[nm]", "Transmittance", 8, color, min, max, xmin, xmax);
         _RunData[i].SetGraph(("Raw_"+title).c_str(), "lambda[nm]", "Transmittance", 8, color, min, max, xmin, xmax);
         color++;
