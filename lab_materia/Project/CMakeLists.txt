@@ -19,6 +19,6 @@ foreach(MACRO_SOURCE ${MACRO_SOURCES})
     get_filename_component(MACRO_EXECUTABLE ${MACRO_SOURCE} NAME_WE)
     # Add the executable target
     add_executable(${MACRO_EXECUTABLE} ${MACRO_SOURCE})
-    # Link the executable target with your precompiled libraries and ROOT libraries
+    # Link the executable target with your precompiled libraries, fmt, and ROOT libraries
     target_link_libraries(${MACRO_EXECUTABLE} Libraries ${ROOT_LIBRARIES})
 endforeach()

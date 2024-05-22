@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path_name="../Run_Data/Run_2/"
+path_name=$1
 main_file="../builddir/main"
 
 

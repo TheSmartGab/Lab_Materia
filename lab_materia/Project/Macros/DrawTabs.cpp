@@ -17,6 +17,8 @@ string name3 = "Cielsky.txt";
 string name4 = "Rosenblat.txt";
 string name5 = "Yakubonsky.txt";
 string name6 = "Palik.txt";
+string name7 = "Yakubonsky4nm.txt";
+string name8 = "Olmon.txt";
 string name_print;
 
 int main(int argc, const char **argv){
@@ -39,6 +41,8 @@ int main(int argc, const char **argv){
     cout<<"name4:\t"<<name4<<endl;
     cout<<"name5:\t"<<name5<<endl;
     cout<<"name6:\t"<<name6<<endl;
+    cout<<"name7:\t"<<name7<<endl;
+    cout<<"name8:\t"<<name8<<endl;
     cout<<"debug:\t"<<debug<<endl;
     cout<<"print:\t"<<print<<endl;
     cout<<"fit:\t"<<fit<<endl;
@@ -78,22 +82,29 @@ int main(int argc, const char **argv){
     TabValues Rosenblat(6, RB, 8);
     Rosenblat.DoAll(path, name4, expr, params, 2, 3, 2, 2, 0, 1);
 
-    double YV[] = {300, 400, 500, 600, 800, 1000};
-    TabValues Yakubonsky(5, JB, 6);
-    Yakubonsky.DoAll(path, name5, expr, params, 4, 5);
+    double YB[] = {300, 400, 500, 600, 800, 1000};
+    TabValues Yakubonsky(5, YB, 6);
+    Yakubonsky.DoAll(path, name5, expr, params, 4, 5, 2, 2, 0, 1);
 
+    double Y4nmB[] = {300, 400, 500, 600, 800, 1000};
+    TabValues Yakubonsky4nm(5, Y4nmB, 6);
+    Yakubonsky4nm.DoAll(path, name7, expr, params, 4, 6, 2, 2, 0, 1);
 
-    TCanvas All_can;
-    All_can.cd();
-    auto frame = All_can.DrawFrame(250, 0., 1000., 8.);
-    All_can.Update();
-    Johnson.DrawCanvas(All_can, "P same", 0.7, 1, 0.8, 1);
-    Palik.DrawCanvas(All_can, "P same", 0.7, 1, 0.6, 0.8);
+    double OB[] = {300, 400, 500, 600, 800, 1000};
+    TabValues Olmon(5, OB, 6);
+    Olmon.DoAll(path, name8, expr, params, 4, 6, 2, 2, 0, 1);
 
-    if(print){
-        All_can.cd();
-        All_can.Print((path + "out_" + name_print + ".pdf").c_str(), (path + "out_" + name_print + ".pdf").c_str());
-    }
+    // TCanvas All_can;
+    // All_can.cd();
+    // auto frame = All_can.DrawFrame(250, 0., 1000., 8.);
+    // All_can.Update();
+    // Johnson.DrawCanvas(All_can, "P same", 0.7, 1, 0.8, 1);
+    // Palik.DrawCanvas(All_can, "P same", 0.7, 1, 0.6, 0.8);
+
+    // if(print){
+    //     All_can.cd();
+    //     All_can.Print((path + "out_" + name_print + ".pdf").c_str(), (path + "out_" + name_print + ".pdf").c_str());
+    // }
 
     //Lemachard.DrawCanvas(All_can, "P same");
     //Cielsky.DrawCanvas(All_can, "P same");

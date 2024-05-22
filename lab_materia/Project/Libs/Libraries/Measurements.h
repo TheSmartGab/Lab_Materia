@@ -63,7 +63,7 @@ class Measurements{
 
         // Check if both objects have the same number of measurements
         if (_Data.size() != other._Data.size()) {
-            cerr << "Error: Cannot subtract Measurements with different numbers of data points." << endl;
+            cout << "Error: Cannot subtract Measurements with different numbers of data points." << endl;
             return result; // Return an empty result
         }
 
@@ -85,6 +85,69 @@ class Measurements{
 
         return result;
     };
+
+    Measurements operator/(const Measurements& other) const {
+        // Create a new Measurements object to store the result
+        Measurements result;
+
+        // Check if both objects have the same number of measurements
+        if (_Data.size() != other._Data.size()) {
+            cout << "Error: Cannot subtract Measurements with different numbers of data points." << endl;
+            return result; // Return an empty result
+        }
+
+        // Subtract corresponding measurements
+        for (size_t i = 0; i < _Data.size(); ++i) {
+            // Create a new Measure object to store the result of subtraction
+            Measure divided_measure = _Data[i] / other._Data[i];
+            // Add the result to the result's _Data vector
+            result.push_back(divided_measure);
+        }
+
+        // Copy other necessary data members from the current object
+        result.SetThick(_Thick);
+        result.SetTemp(_Temp);
+        result.SetTheta(_Theta);
+        result.SetRate(_Rate);
+        result.SetID(ID);
+        result.SetType(Type);
+
+        return result;
+    };
+    
+    Measurements& operator=(const Measurements& other) {
+        if (this == &other) // Self-assignment check
+            return *this;
+
+        // Copy simple data members
+        _Temp = other._Temp;
+        _Theta = other._Theta;
+        _Thick = other._Thick;
+        _Rate = other._Rate;
+        ID = other.ID;
+        Type = other.Type;
+
+        // Clean up existing resources
+        delete func;
+        delete graph;
+        delete Thick_func;
+        delete can;
+        delete legend;
+
+        // Allocate new resources and copy data
+        func = new TF1(*other.func);
+        graph = new TGraph(*other.graph);
+        Thick_func = new TF1(*other.Thick_func);
+        can = new TCanvas();
+        legend = new TLegend(*other.legend);
+
+        // Copy vector of objects
+        _Data = other._Data;
+        _Calibration = other._Calibration;
+
+        return *this;
+    }
+
 
     vector<Measure> GetData() const {return _Data;}
     Measure GetCalibration() const {return _Calibration;}

@@ -65,9 +65,9 @@ void TabValues::UpdateART(){
         double k =  _kMeas.GetData()[i].GetValue();
         double R = (pow(n-1., 2) + pow(k,2)) / (pow(n+1.,2) + pow(k,2));
         double alpha = 4.*M_PI*k / lambda;   //note that it's 1/nm, thickness must be in nanometers as well
-       // double A = (1.-R)*(1 - exp(-alpha*_Thick));
+        double A = (1.-R)*(1 - exp(-alpha*_Thick));
        // double A = (1 - exp(-alpha*_Thick));
-       double A = alpha*_Thick;
+       // double A = alpha*_Thick;
 
         double T = (1-R)*exp(-alpha*_Thick);
     

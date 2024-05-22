@@ -86,6 +86,21 @@ class Run: public Disk_Geo, public Run_Info, public TDistribution{
             meas.UpdateCanvas();
         }
     }
+    void CloseAdditional(){
+        AddCan->Close();
+        delete AddCan;
+        AddCan = 0x0;
+    }
+    void CloseInner(){
+        InnCan->Close();
+        delete InnCan;
+        InnCan = 0x0;
+    }
+    void CloseOuter(){
+        OutCan->Close();
+        delete OutCan;
+        OutCan = 0x0;
+    }
 
     void UpdateGeometry(){
         for(auto & glass : Center){

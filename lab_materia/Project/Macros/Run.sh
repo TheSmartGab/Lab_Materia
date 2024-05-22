@@ -50,6 +50,9 @@ for file in *.txt; do
     if [ "$filename" == "Thickness_Fitted.txt" ]; then
         continue
     fi
+    if [[ "$filename" == *"Diff"* ]]; then
+        continue
+    fi
 
     if [ "$filename" != "$output_name" ]; then
         # Append filename to output file
