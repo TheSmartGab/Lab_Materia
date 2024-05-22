@@ -8,7 +8,7 @@ print=$3
 source_dir="../Lab_Data/"
 output_name=Data_names.txt
 
-#Run Executable
+# Run Executable
 Run_exe=./builddir/Run
 
 echo =========================================
@@ -19,19 +19,28 @@ echo source_dir "$source_dir"
 echo list name "$output_name"
 echo =========================================
 
-#checking for updates in source code
-#make
-
 # Substring to search for in filenames
 substring=$1
 
 # Create the copy directory if it doesn't exist
 mkdir -p "$Run_dir"
 
-# Find files containing the substring in their names and copy them to the copy directory
-find "$source_dir" -type f -name "*$substring*.txt" ! -name "*out*" -exec cp "{}" "$Run_dir" \;
+# Find files containing the substring in their names (case-insensitive) and copy them to the copy directory
+find "$source_dir" -type f -iname "*$substring*.txt" ! -iname "*out*" -exec bash -c '
+for file; do
+    # Get the directory and base name of the file
+    dir=$(dirname "$file")
+    base=$(basename "$file")
 
-echo "Files containing '$substring' in their names have been copied to $Run_dir"
+    # Transform the base name to have the first letter of the substring capitalized
+    new_base=$(echo "$base" | sed "s/$1/\u$1/I")
+
+    # Copy the file with the new name
+    cp "$file" "$2/$new_base"
+done
+' bash {} + "$substring" "$Run_dir"
+
+echo "Files containing '$substring' in their names have been copied to $Run_dir with appropriate name changes."
 
 # Change directory to the specified directory
 cd "$Run_dir" || exit
@@ -53,6 +62,9 @@ for file in *.txt; do
     if [[ "$filename" == *"Diff"* ]]; then
         continue
     fi
+    if [[ "$filename" == *"Ratio"* ]]; then
+        continue
+    fi
 
     if [ "$filename" != "$output_name" ]; then
         # Append filename to output file
@@ -63,6 +75,7 @@ done
 # Change directory back to the original directory
 cd - > /dev/null
 
-#Run_exe -Run $1 -print $print -noApp 0 -debug "$debug"
+# Uncomment the line below to run the executable with the provided arguments
+# $Run_exe -Run $1 -print $print -noApp 0 -debug "$debug"
 
 echo "Filenames have been written to $Run_dir/$output_name"
