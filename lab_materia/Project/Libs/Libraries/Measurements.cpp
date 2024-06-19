@@ -51,6 +51,7 @@ void Measurements::ReadAllData(const char* filename) {
     bool start = false;
     bool abs_found = false;
     bool lambda_found = false;
+    _Temp = 0;
 
     string str;
     while (getline(in, str)) {
@@ -90,6 +91,14 @@ void Measurements::ReadAllData(const char* filename) {
                 ss >> value;
                 Type = value;
             }
+            if (value == "Run:" || value == "Run" || value == "run" || value == "run:") {
+                ss >> value;
+                Run = value;
+            }
+            if(value == "Temp:" || value == "Temp" || value == "temp" || value == "temp:") {
+                ss >> value;
+                _Temp = atof(ss.str().c_str());
+            }
         }
     }
 
@@ -119,6 +128,10 @@ void Measurements::ReadAllData(const char* filename) {
             // Conversion failed, not a number
             Type = "Additional";
         } 
+    }
+
+    if(_Temp == 0){
+        _Temp = STANDARD_TEMP;
     }
     
     if (debug == 2) {
@@ -227,7 +240,8 @@ void Measurements::SetFit(const char* function, double x_min, double x_max, cons
 };
 
 void Measurements::SetGraph(const char* Title, const char* x_label, const char* y_label,
-                            int MS, int MC,  const double& min , const double& max, const double& xmin, const double& xmax
+                            int MS, int MC,  const double& min , const double& max, const double& xmin, const double& xmax, 
+                            const double& PTSize
                             ){
     if(debug){cout<<"SetGraph Begins"<<endl;}
     legend = new TLegend(0.7,0.9,1,1);
@@ -241,45 +255,82 @@ void Measurements::SetGraph(const char* Title, const char* x_label, const char* 
             cout<<i<<" "<<_Data[i].GetLambda()<<" "<<_Data[i].GetValue()<<endl;
         }
         graph->SetPoint(i, _Data[i].GetLambda(),_Data[i].GetValue());
+        graph->SetPointError(i, LError, TError);
     }
 
     graph->GetXaxis()->SetLimits(xmin, xmax);
     graph->SetMaximum(max);
     graph->SetMinimum(min);
-    graph->SetMarkerSize(0.7);
+    graph->SetMarkerSize(PTSize);
     graph->SetMarkerStyle(MS);
     graph->SetMarkerColor(MC);
 
     if(debug){cout<<"SetGraph Ends"<<endl;}
 };
 
-void Measurements::Draw(const char* opt, const char* legend_entry, const double& xl1, const double& xl2, const double yl1, const double yl2){
-    if(debug){cout<<"Draw Begins"<<endl;}
+void Measurements::Draw(const char* opt, const char* legend_entry, const double& xl1, const double& xl2, const double yl1, const double yl2, bool NoErrors) {
+    if (debug) {
+        cout << "Draw Begins" << endl;
+    }
 
+    // Ensure the canvas is properly cleared and activated
     can->cd();
-    if(debug>=3){graph->Print();}
-    graph->Draw(opt);
-    legend->Draw();
+    can->Clear();
+
+    // Print the graph for debugging if needed
+    if (debug >= 3) {
+        graph->Print();
+    }
+
+    if(!NoErrors){graph->Draw(opt);}
+    if(NoErrors){
+        string option = string(opt);
+        option += "X";
+        graph->Draw(option.c_str());
+    }
+
+    // Update the canvas to ensure the graph is rendered correctly
+    can->Update();
+
+    // Configure and draw the legend
     legend->SetX1NDC(xl1);
     legend->SetX2NDC(xl2);
     legend->SetY1NDC(yl1);
     legend->SetY2NDC(yl2);
     legend->SetTextSize(Legend_Text_size);
     legend->AddEntry(graph, legend_entry, "P");
+    legend->Draw();
+
+    // Ensure the legend is updated and drawn properly
     gPad->Modified();
     gPad->Update();
 
-    if(print){
-        can->Print((path + "out_" + name_print + ".pdf").c_str(), (path + "out_" + name_print + ".pdf").c_str());
+    // Print to PDF if required
+    if (print) {
+        can->Print((path + "out_" + name_print + ".pdf").c_str(), "pdf");
     }
 
-    if(debug){cout<<"Draw Ends"<<endl;}
+    if (debug) {
+        cout << "Draw Ends" << endl;
+    }
 }
 
-void Measurements::DrawCanvas(TCanvas &ext_can, const char* opt, const double& xl1, const double& xl2, const double& yl1, const double& yl2){
+
+void Measurements::DrawCanvas(TCanvas &ext_can, const char* opt, const double& xl1, const double& xl2, const double& yl1, const double& yl2, bool NoErrors, const char* LegendEntry){
     if(debug){cout<<"DrawCanvas Begins"<<endl;}
     ext_can.cd();
-    graph->Draw(opt);
+
+    if(!NoErrors){graph->Draw(opt);}
+    if(NoErrors){
+        string option = string(opt);
+        option += "X";
+        graph->Draw(option.c_str());}
+    ext_can.Update();
+
+    if(LegendEntry != ""){
+        legend->AddEntry(graph, LegendEntry, "P");
+    }
+
     legend->Draw();
     legend->SetX1NDC(xl1);
     legend->SetX2NDC(xl2);

@@ -214,8 +214,8 @@ void Run::DrawAll(){
     Bias.Draw("AP");
     int n_meas = _CorrectData.size();
     for(int i = 0; i<n_meas; i++){
-        _CorrectData[i].Draw("AP", (_CorrectData[i].GetID() +": "+ to_string( _CorrectData[i].GetThick())).c_str(), 0.7, 1, 0.7, 0.8);
-        //_RunData[i].Draw("AP"); //Avoid Drawing Raw graphs
+        _CorrectData[i].Draw("AP", (_CorrectData[i].GetID() +": "+ to_string( _CorrectData[i].GetThick())).c_str(), 0.7, 1, 0.7, 0.8, false);
+        _RunData[i].Draw("AP", (_CorrectData[i].GetID() +": "+ to_string( _CorrectData[i].GetThick())).c_str(), 0.7, 1, 0.7, 0.8, false); //Avoid Drawing Raw graphs
     }
 
     if(debug){cout<<"DrawAll Ends"<<endl;}

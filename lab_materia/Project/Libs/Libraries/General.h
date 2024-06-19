@@ -17,6 +17,7 @@
 #include "TMath.h"
 #include "TVector3.h"
 #include "Math/MinimizerOptions.h"
+#include "TGraphErrors.h"
 
 using namespace std;
 
@@ -108,5 +109,13 @@ inline void UpdateLegendLimits(double& xl1, double& xl2, double& yl1, double& yl
     cout<<"Warning: Need more space for legend, legends are beeing overlayered"<<endl;
 }
 
+static double light_spd = 2.99792458e17; //nm/s
+
+static double TError = 0.011; //reasonable error value according to the differences between spectra of the same film taken 
+                      //2 times. Only the range 320 - 850 nm was considered. The film with B id showed 
+                      // a greater change due to some changes in the resonance at about 600nm
+static double LError = 0.2; //error due to the instrument
+
+static double STANDARD_TEMP = 25; //standard room temperature
 
 #endif 

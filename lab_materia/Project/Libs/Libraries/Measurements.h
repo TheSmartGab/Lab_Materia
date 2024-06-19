@@ -11,7 +11,11 @@ class Measurements{
         Thick_func = new TF1();
         func = new TF1();
         legend = new TLegend(0.8, 0.8, 1, 1);
-        graph = new TGraph();
+        graph = new TGraphErrors();
+        LorentzPeackF = new TF1();
+        BackgroundF = new TF1();
+        LorentzBackgroundF = new TF1();
+
     };
 
     Measurements(const Measurements &other){
@@ -28,7 +32,10 @@ class Measurements{
         Thick_func = new TF1(*other.Thick_func);
         func = new TF1(*other.func);
         legend = new TLegend(*other.legend);
-        graph = new TGraph(*other.graph);
+        graph = new TGraphErrors(*other.graph);
+        LorentzPeackF = new TF1(*other.LorentzPeackF);
+        BackgroundF = new TF1(*other.BackgroundF);
+        LorentzBackgroundF = new TF1(*other.LorentzBackgroundF);
 
         // Copy vector of objects
         _Data = other._Data;
@@ -54,6 +61,19 @@ class Measurements{
         if (legend) {
             delete legend;
             legend = nullptr;
+        }
+
+        if(LorentzPeackF){
+            delete LorentzPeackF;
+            LorentzPeackF = nullptr;
+        }
+        if(BackgroundF){
+            delete BackgroundF;
+            BackgroundF = nullptr;
+        }        
+        if(LorentzBackgroundF){
+            delete LorentzBackgroundF;
+            LorentzBackgroundF = nullptr;
         }
     };
 
@@ -136,10 +156,15 @@ class Measurements{
 
         // Allocate new resources and copy data
         func = new TF1(*other.func);
-        graph = new TGraph(*other.graph);
+        graph = new TGraphErrors(*other.graph);
         Thick_func = new TF1(*other.Thick_func);
         can = new TCanvas();
         legend = new TLegend(*other.legend);
+
+        LorentzBackgroundF = new TF1(*other.LorentzBackgroundF);
+        BackgroundF = new TF1(*other.BackgroundF);
+        LorentzPeackF = new TF1(*other.LorentzPeackF);
+
 
         // Copy vector of objects
         _Data = other._Data;
@@ -168,6 +193,7 @@ class Measurements{
     string GetID() const {return ID;};
     string GetType() const {return Type;};
     double GetThickError() const {return Thick_func->GetParError(0);}
+    string GetRun() const {return Run;}
 
     void push_back(const Measure &meas){
         _Data.push_back(meas);
@@ -205,14 +231,16 @@ class Measurements{
 
     void SetGraph(const char* Title = "", const char* x_label="", const char* y_label="", 
                   int MS = 9, int MC = 1,
-                  const double& min = 0, const double& max = 1, const double& xmin = 250, const double& xmax = 1000
+                  const double& min = 0, const double& max = 1, const double& xmin = 250, const double& xmax = 1000, 
+                  const double& PTSize = 0.7
                   );
-    void Draw(const char* opt = "AP", const char* legend_entry = "", const double& xl1 = 0.7, const double& xl2=1, const double yl1=0.7, const double yl2=0.8);
+    void Draw(const char* opt = "AP", const char* legend_entry = "", const double& xl1 = 0.7, const double& xl2=1, const double yl1=0.7, const double yl2=0.8, bool noErrors = true);
 
-    void DrawCanvas(TCanvas &can, const char* opt, const double& xl1 = 0.7, const double& xl2=1, const double& yl1=0.7, const double& yl2=0.8);
+    void DrawCanvas(TCanvas &can, const char* opt = "P", const double& xl1 = 0.7, const double& xl2=1, const double& yl1=0.7, const double& yl2=0.8, bool noErrors = true, const char* LegendEntry="");
+
     void AddGraph(TGraph* graph, const char* opt){
         can->cd();
-        graph->Draw(opt);
+        graph->Draw();
     }
 
     void Close(){
@@ -242,7 +270,106 @@ class Measurements{
             gPad->Modified();
             gPad->Update();
         }
+    };
+
+    double Background(double* x, double* par){
+
+        //adjust the function to better match the background,
+        //it does not look like a flat function as, for higher wl,
+        //way outside the peack, it decrease without
+        //any horizontal asymptote in sight
+        return par[3];
     }
+
+    double LorentzPeack(double* x, double* par){
+        //par[0] -> I
+        //par[1] -> gamma
+        //par[2] -> x0
+
+        double var = x[0];
+        double par2 = par[2];
+        return par[0]* ( (pow(par[1], 2)) / ( pow(var - par2, 2) + pow(par[1], 2) ) );
+    }
+
+    double LorentzBackground(double* x, double* par){
+        //par[0] -> I
+        //par[1] -> gamma
+        //par[2] -> x0
+        //par[3] -> background
+
+        return LorentzPeack(x, par) * par[4] + Background(x,par);
+    }
+
+
+    double LorentzFit(const double& xmin = 350, const double& xmax = 700, const int& numpars=4){
+        LorentzBackgroundF = new TF1("LorentzBackground", this, &Measurements::LorentzBackground, xmin, xmax, numpars);
+
+        LorentzBackgroundF->SetParameter(0, 1);
+        LorentzBackgroundF->SetParameter(1, 1);
+        LorentzBackgroundF->SetParameter(2, 595);
+        LorentzBackgroundF->SetParameter(3, 1);
+
+        LorentzBackgroundF->SetParLimits(3, 0.9, 1.1);
+
+        graph->Fit(LorentzBackgroundF, "R+");
+    }
+
+    void Log(){
+        if(debug){
+            cout<<"Log Begins"<<endl;
+        }
+
+        for(auto &meas : _Data){
+            meas.SetValue(log(meas.GetValue()));
+        }
+
+        if(debug){
+            cout<<"Log Ends"<<endl;
+        }
+    }
+
+    Measure Max(){
+        auto it = max_element(_Data.begin(),
+                                _Data.end(),
+                                [](const Measure& a,const Measure& b) { return a.GetValue() < b.GetValue(); });                 
+        if (it == _Data.end()) throw "max_element called on emtpy vector";
+        auto max = *it;
+
+        return max;
+    }
+
+    int GetIndexLambda(const double &lambda){
+        int count = 0;
+        for(auto & measure : _Data){
+            if(measure.GetLambda() == lambda){
+                return count;
+            }
+            count ++;
+        }
+
+        cout<<"Error in GetIndexLambda: Lambda Not found, return 0. Lambda Passed: "<<lambda<<endl;
+        return 0;
+    }
+
+    Measure GetMeasureLambda(const double& lambda){
+        return _Data[GetIndexLambda(lambda)];
+    }
+
+    double MaxAbs(const double& lambdaMin, const double& lambdaMax){
+
+        Sort();
+        int MinIndex = GetIndexLambda(lambdaMin);
+        int MaxIndex = GetIndexLambda(lambdaMax);
+
+        auto it = max_element(_Data.begin() + MinIndex,
+                        _Data.begin() + MaxIndex,
+                        [](const Measure& a,const Measure& b) { return abs(a.GetValue()) < abs(b.GetValue()); });                 
+        if (it == _Data.end()) throw "max_element called on emtpy vector";
+        double max = (*it).GetValue();
+
+        return max;
+    }
+
 
     private:
     vector<Measure> _Data;
@@ -253,13 +380,18 @@ class Measurements{
     double _Rate;
     string ID;
     string Type;
+    string Run;
 
     TF1 *func;
-    TGraph *graph;
+    TGraphErrors *graph;
     TCanvas *can;
     TLegend *legend;
 
     TF1 *Thick_func;
+
+    TF1 *LorentzPeackF;
+    TF1 *BackgroundF;
+    TF1 *LorentzBackgroundF;
     
 };
 

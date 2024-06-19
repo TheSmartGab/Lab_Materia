@@ -2518,12 +2518,3 @@ Data:
 351		0.0972447
 350.5		0.0974052
 350		0.097557
-Data1 - Data2
-lambda		value
-
-Calibration:
-lambda:	2.12203e-314
-Abs:	6.9229e-310
-
-Data:
-#

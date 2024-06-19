@@ -68,19 +68,21 @@ int main(int argc, const char** argv){
     Measurements Data;
     Data.ReadAllData((path+name).c_str());
     Data.Print();
-    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, -1, 3.5, 200, 900);
+    Data.SetGraph("Data", "lambda", "Transmittance", 8, 4, -1, 1, 200, 900);
     Data.Draw("AP", "Raw_Data");
 
     Bias.SetBias(Data);
     Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, -1, 3.5, 200, 900 );
-    Bias.Draw("AP", "Bias");
+    Bias.Draw("AP", "Bias", 0.7, 1, 0.7, 0.8, false);
 
     //Correct_Data
     Measurements Correct_Data;
     Correct_Data.Correct(Data, Bias);
     Correct_Data.Print(&out);
     Correct_Data.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, 0, 1, 200, 900);
-    Correct_Data.Draw("AP", "Corrected Data");
+    Correct_Data.Draw("AP", "Corrected Data", 0.7, 1, 0.7, 0.8, false);
+
+    //cout <<"Corrected Value at 800nm: "<< Correct_Data.GetMeasureLambda(800).GetValue()<<endl;
 
     //CLosing actions
     out.close();
