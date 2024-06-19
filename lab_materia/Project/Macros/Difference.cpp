@@ -73,13 +73,13 @@ int main(int argc, const char** argv){
     // bias data
     Measurements Bias;
     Bias.ReadAllData((path_bias+name_bias).c_str());
-    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, 0, 2, 200, 400 );
+    Bias.SetGraph("Bias" , "lambda", "Transmittance", 8, 4, 0, 2, 200, 900 );
     Bias.Draw("AP", "Bias");
     
     //Data
     Measurements Data1;
     Data1.ReadAllData((path+name1).c_str());
-    Data1.SetGraph("Data1", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 400);
+    Data1.SetGraph("Data1", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 900);
     Data1.Draw("AP", "Raw_Data1");
 
     Bias.SetBias(Data1);
@@ -90,13 +90,13 @@ int main(int argc, const char** argv){
     Correct_Data1.Correct(Data1, Bias);
     out<<"Data1:"<<endl;
     Correct_Data1.Print(&out);
-    Correct_Data1.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 400);
+    Correct_Data1.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 900);
     Correct_Data1.Draw("AP", "Data1");
 
     //Data
     Measurements Data2;
     Data2.ReadAllData((path2+name2).c_str());
-    Data2.SetGraph("Data2", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 400);
+    Data2.SetGraph("Data2", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 900);
     Data2.Draw("AP", "Raw_Data2");
 
     Bias.SetBias(Data2);
@@ -106,15 +106,18 @@ int main(int argc, const char** argv){
     Correct_Data2.Correct(Data2, Bias);
     out<<"Data2:"<<endl;
     Correct_Data2.Print(&out);
-    Correct_Data2.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 400);
+    Correct_Data2.SetGraph("Corrected_Data", "lambda", "Transmittance", 8, 4, 0, 0.5, 200, 900);
     Correct_Data2.Draw("AP", "Data2");
 
     //Difference
     Measurements Difference;
     Difference = Data1 - Data2;
+    cout << "========================================================="<<endl;
+    cout<<"MaxAbsDifference:\t" << Difference.MaxAbs(320, 850);
+    cout << "========================================================="<<endl;
     out<<"Data1 - Data2"<<endl;
     Difference.Print(&out);
-    Difference.SetGraph("Difference", "lambda[nm]", "Transmittance Difference", 8, 4, -0.01, 0.01, 200, 900);
+    Difference.SetGraph("Difference", "lambda[nm]", "Transmittance Difference", 8, 4, -0.1, 0.1, 200, 900);
     Difference.Draw("AP", "Data1 - Data2");
 
     //CLosing actions

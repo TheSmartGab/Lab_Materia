@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Libraries.dir/Libs/Libraries/CookedLib.cpp.o"
+  "CMakeFiles/Libraries.dir/Libs/Libraries/CookedLib.cpp.o.d"
   "CMakeFiles/Libraries.dir/Libs/Libraries/Info.cpp.o"
   "CMakeFiles/Libraries.dir/Libs/Libraries/Info.cpp.o.d"
   "CMakeFiles/Libraries.dir/Libs/Libraries/Measurements.cpp.o"

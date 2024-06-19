@@ -633,5 +633,7 @@ CMakeFiles/Libraries.dir/Libs/Libraries/TabValues.cpp.o: \
  /home/gabri/root/include/TMatrixFUtils.h \
  /home/gabri/root/include/TMatrixFUtilsfwd.h \
  /home/gabri/root/include/Math/MinimizerOptions.h \
+ /home/gabri/root/include/TGraphErrors.h \
+ /home/gabri/root/include/TGraph.h \
  /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/Measure.h \
  /home/gabri/uni/Lab_Materia_copy/lab_materia/Project/Libs/Libraries/Measurements.h

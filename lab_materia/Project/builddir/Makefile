@@ -143,6 +143,19 @@ AbsToTrans/fast:
 .PHONY : AbsToTrans/fast
 
 #=============================================================================
+# Target rules for targets named Cooked
+
+# Build rule for target.
+Cooked: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Cooked
+.PHONY : Cooked
+
+# fast build rule for target.
+Cooked/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cooked.dir/build.make CMakeFiles/Cooked.dir/build
+.PHONY : Cooked/fast
+
+#=============================================================================
 # Target rules for targets named Difference
 
 # Build rule for target.
@@ -232,6 +245,30 @@ main: cmake_check_build_system
 main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
+
+Libs/Libraries/CookedLib.o: Libs/Libraries/CookedLib.cpp.o
+.PHONY : Libs/Libraries/CookedLib.o
+
+# target to build an object file
+Libs/Libraries/CookedLib.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/CookedLib.cpp.o
+.PHONY : Libs/Libraries/CookedLib.cpp.o
+
+Libs/Libraries/CookedLib.i: Libs/Libraries/CookedLib.cpp.i
+.PHONY : Libs/Libraries/CookedLib.i
+
+# target to preprocess a source file
+Libs/Libraries/CookedLib.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/CookedLib.cpp.i
+.PHONY : Libs/Libraries/CookedLib.cpp.i
+
+Libs/Libraries/CookedLib.s: Libs/Libraries/CookedLib.cpp.s
+.PHONY : Libs/Libraries/CookedLib.s
+
+# target to generate assembly for a file
+Libs/Libraries/CookedLib.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Libraries.dir/build.make CMakeFiles/Libraries.dir/Libs/Libraries/CookedLib.cpp.s
+.PHONY : Libs/Libraries/CookedLib.cpp.s
 
 Libs/Libraries/Info.o: Libs/Libraries/Info.cpp.o
 .PHONY : Libs/Libraries/Info.o
@@ -376,6 +413,30 @@ Macros/AbsToTrans.s: Macros/AbsToTrans.cpp.s
 Macros/AbsToTrans.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AbsToTrans.dir/build.make CMakeFiles/AbsToTrans.dir/Macros/AbsToTrans.cpp.s
 .PHONY : Macros/AbsToTrans.cpp.s
+
+Macros/Cooked.o: Macros/Cooked.cpp.o
+.PHONY : Macros/Cooked.o
+
+# target to build an object file
+Macros/Cooked.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cooked.dir/build.make CMakeFiles/Cooked.dir/Macros/Cooked.cpp.o
+.PHONY : Macros/Cooked.cpp.o
+
+Macros/Cooked.i: Macros/Cooked.cpp.i
+.PHONY : Macros/Cooked.i
+
+# target to preprocess a source file
+Macros/Cooked.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cooked.dir/build.make CMakeFiles/Cooked.dir/Macros/Cooked.cpp.i
+.PHONY : Macros/Cooked.cpp.i
+
+Macros/Cooked.s: Macros/Cooked.cpp.s
+.PHONY : Macros/Cooked.s
+
+# target to generate assembly for a file
+Macros/Cooked.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cooked.dir/build.make CMakeFiles/Cooked.dir/Macros/Cooked.cpp.s
+.PHONY : Macros/Cooked.cpp.s
 
 Macros/Difference.o: Macros/Difference.cpp.o
 .PHONY : Macros/Difference.o
@@ -554,6 +615,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AbsToTrans"
+	@echo "... Cooked"
 	@echo "... Difference"
 	@echo "... DrawNormalizedThick"
 	@echo "... DrawTabs"
@@ -562,6 +624,9 @@ help:
 	@echo "... Ratio"
 	@echo "... Run"
 	@echo "... main"
+	@echo "... Libs/Libraries/CookedLib.o"
+	@echo "... Libs/Libraries/CookedLib.i"
+	@echo "... Libs/Libraries/CookedLib.s"
 	@echo "... Libs/Libraries/Info.o"
 	@echo "... Libs/Libraries/Info.i"
 	@echo "... Libs/Libraries/Info.s"
@@ -580,6 +645,9 @@ help:
 	@echo "... Macros/AbsToTrans.o"
 	@echo "... Macros/AbsToTrans.i"
 	@echo "... Macros/AbsToTrans.s"
+	@echo "... Macros/Cooked.o"
+	@echo "... Macros/Cooked.i"
+	@echo "... Macros/Cooked.s"
 	@echo "... Macros/Difference.o"
 	@echo "... Macros/Difference.i"
 	@echo "... Macros/Difference.s"
